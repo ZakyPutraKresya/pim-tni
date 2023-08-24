@@ -11,7 +11,7 @@ import VisionSection from "@/components/VIsionSection";
 import OurNewsSection from "@/components/OurNewsSection";
 
 const About = () => {
-    const carouselImg = 'https://www.ifc.org.sg/ifc2web/CarouselImages/UK%20DG%20DoT.jpeg'
+    const carouselImg = 'https://www.shipspotting.com/photos/middle/7/4/2/3011247.jpg?cb=0'
     const breadcrumbs = [
         { text: 'Home', link: '/' },
         { text: 'About us' },
