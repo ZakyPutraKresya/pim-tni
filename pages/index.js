@@ -13,6 +13,9 @@ const Home = () => {
     { title: 'Card Title 1', imageUrl: 'https://via.placeholder.com/400x200' },
     { title: 'Card Title 2', imageUrl: 'https://via.placeholder.com/400x200' },
     { title: 'Card Title 3', imageUrl: 'https://via.placeholder.com/400x200' },
+    { title: 'Card Title 3', imageUrl: 'https://via.placeholder.com/400x200' },
+    { title: 'Card Title 3', imageUrl: 'https://via.placeholder.com/400x200' },
+    { title: 'Card Title 3', imageUrl: 'https://via.placeholder.com/400x200' },
     // ... Add more card data here ...
   ];
 
