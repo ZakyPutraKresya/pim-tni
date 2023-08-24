@@ -61,7 +61,7 @@ const Navbar = () => {
             </ul>
           </li>
           <li><Link href="/events" className="text-white">Events</Link></li>
-          <li><a href="#" className="text-white">Gallery</a></li>
+          <li><Link href="/gallery" className="text-white">Gallery</Link></li>
         </ul>
       </div>
     </nav>

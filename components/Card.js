@@ -1,16 +1,17 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
+import styles from '@/styles/Main.module.scss'
 
 const Card = ({ title, imageUrl }) => {
   return (
-    <div className="card-container">
-      <div className="card relative">
+    <div className={styles['card-container']}>
+      <div className={`${styles.card} relative`}>
         <img
           src={imageUrl}
           alt={title}
           className="w-full h-auto"
         />
-        <div className="card-content flex">
+        <div className={`${styles['card-content']} flex`}>
           <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-12">
             <FaStar />
           </div>
