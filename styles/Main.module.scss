@@ -245,3 +245,53 @@
 
   
   
+  .LoginBody {
+    background: url("../public/img/jpg/bg-login-pusinfomar.jpg");
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .LoginFormContainer {
+    // background: red;
+  }
+  
+  .LoginForm {
+    background: rgba(255, 255, 255, 0.24);
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  
+  .LoginForm svg {
+    font-size: 12px;
+  }
+  
+  .iconLoginProfile {
+    font-size: 10px !important;
+    margin-right: 2px;
+  }
+  
+  .LoginForm input {
+    background: none;
+    border: none;
+    outline: none;
+    // margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  .loginButton {
+    background: #0894da;
+    width: 100%;
+    font-weight: 500;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #fff;
+    padding: 6px;
+  }
+  
