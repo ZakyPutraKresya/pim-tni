@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+.news-item-even {
+  flex-direction: row-reverse;
+}
+
+.news-item-odd {
+  flex-direction: row;
+}
+
+.border-blue-left {
+  right: 0;
+  transform: rotate(45deg);
+  transform-origin: top left;
+}
+
+.border-blue-right {
+  left: 0;
+  transform: rotate(-45deg);
+  transform-origin: top right;
+}
