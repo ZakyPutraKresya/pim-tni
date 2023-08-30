@@ -14,7 +14,7 @@ import ListOurTeam from "@/components/ListOurTeam";
 const OurTeam = () => {
   const carouselImg =
     "https://www.shipspotting.com/photos/middle/7/4/2/3011247.jpg?cb=0";
-  const breadcrumbs = [{ text: "Home", link: "/" }, { text: "Our Team" }];
+  const breadcrumbs = [{ text: "Home", link: "/" }, { text: "About", link: "/about" }, { text: "Our Team" }];
   const titlePage = "OUR TEAM"
   const data = [
     {imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png", personName: "LTC Lester Yong", personDesc: "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies. LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies. LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies."},
