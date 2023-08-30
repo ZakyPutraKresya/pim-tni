@@ -10,12 +10,12 @@ import QuickLinks from '@/components/QuickLinks';
 
 const Home = () => {
   const cardData = [
-    { title: 'Card Title 1', imageUrl: 'https://via.placeholder.com/400x200' },
-    { title: 'Card Title 2', imageUrl: 'https://via.placeholder.com/400x200' },
-    { title: 'Card Title 3', imageUrl: 'https://via.placeholder.com/400x200' },
-    { title: 'Card Title 3', imageUrl: 'https://via.placeholder.com/400x200' },
-    { title: 'Card Title 3', imageUrl: 'https://via.placeholder.com/400x200' },
-    { title: 'Card Title 3', imageUrl: 'https://via.placeholder.com/400x200' },
+    { title: 'Card Title 1', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
+    { title: 'Card Title 2', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
+    { title: 'Card Title 3', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
+    { title: 'Card Title 3', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
+    { title: 'Card Title 3', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
+    { title: 'Card Title 3', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
     // ... Add more card data here ...
   ];
 
@@ -33,8 +33,8 @@ const Home = () => {
       <CarouselBig></CarouselBig>
       <WhatsNew data={cardData}></WhatsNew>
       <IntroSection
-        title="Welcome to Our Website"
-        content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae arcu bibendum, ultricies lectus non, interdum tortor. Suspendisse potenti. Nulla facilisi. Sed eget scelerisque ex. Find out more about us <a href='#'>here</a>!"
+        title="Welcome to Pusinfomar TNI"
+        content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae arcu bibendum, ultricies lectus non, interdum tortor. Suspendisse potenti. Nulla facilisi. Sed eget scelerisque ex. Find out more about us"
         imageUrl="https://www.ifc.org.sg/ifc2web/Scripts/public/common/images/contactUS/HomePageImage.jpg"
       />
       <QuickLinks></QuickLinks>

@@ -1,6 +1,4 @@
 import React from 'react';
-import { FaStar } from 'react-icons/fa';
-import styles from '@/styles/Main.module.scss'
 import CardSmall from './CardSmall';
 
 const CardGallery = ({ data }) => {

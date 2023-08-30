@@ -9,14 +9,14 @@ const Card = ({ title, imageUrl }) => {
         <img
           src={imageUrl}
           alt={title}
-          className="w-full h-auto"
+          className="w-full h-full"
         />
         <div className={`${styles['card-content']} flex`}>
-          <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-12">
+          <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-12 rounded">
             <FaStar />
           </div>
           <div className="title flex-grow bg-transparent w-12 h-12">
-            <p className="text-sm md:text-base mt-3 ml-2">{title}</p>
+            <p className="text-sm md:text-base mt-3 ml-2 font-bold">{title}</p>
           </div>
         </div>
       </div>

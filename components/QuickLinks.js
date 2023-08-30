@@ -13,9 +13,9 @@ const QuickLinks = () => {
             className={`${styles.card} ${styles['custom-card']} ml-2 bg-gray-200`}
             style={{ marginLeft: "175px" }}
           >
-            <div className={`${styles['card-body']} text-center`}>
-              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4">
-                <FaCalendar size={70} className="mt-3"/>
+            <div className={`${styles['card-body']} text-center`} style={{ marginTop: 50 }}>
+              <div className="flex items-center justify-center h-12 mx-auto mb-4">
+                <FaCalendar size={80} className="mt-3"/>
               </div>
               <div className={styles['utility-caption']}>
                 <h3>
@@ -32,9 +32,9 @@ const QuickLinks = () => {
             className={`${styles.card} ${styles['custom-card']} ml-2 bg-gray-200`}
             style={{ marginRight: "175px" }}
           >
-            <div className={`${styles['card-body']} text-center`}>
-              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4">
-                <FaGlobe size={70} className="mt-3" />
+            <div className={`${styles['card-body']} text-center`} style={{ marginTop: 50 }}>
+              <div className="flex items-center justify-center h-12 mx-auto mb-4">
+                <FaGlobe size={80} className="mt-3" />
               </div>
               <div className={styles['utility-caption']}>
                 <h3>
