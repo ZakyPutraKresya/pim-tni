@@ -4,11 +4,6 @@ import styles from "@/styles/Main.module.scss";
 import CarouselSmall from "@/components/CarouselSmall";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Head from "next/head";
-import Foreword from "@/components/Foreword";
-import AboutSection from "@/components/AboutSection";
-import MissionSection from "@/components/MissionSection";
-import VisionSection from "@/components/VIsionSection";
-import OurNewsSection from "@/components/OurNewsSection";
 import ListOurTeam from "@/components/ListOurTeam";
 
 const OurTeam = () => {

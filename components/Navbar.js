@@ -62,7 +62,7 @@ const Navbar = () => {
             </Link>
 
             <ul className={`${styles['dropdown-content']} ${dropdowns['moreDropdown'] ? '' : 'hidden'}`} style={{ minWidth: '200px', right: -50 }}>
-              <li><Link href="/" className="block">Resources 1</Link></li>
+              <li><Link href="/resources" className="block">Resources</Link></li>
             </ul>
           </li>
           <li><Link href="/events" className="text-white">Events</Link></li>
