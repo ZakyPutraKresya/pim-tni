@@ -59,6 +59,7 @@ const AdminDashboard = () => {
       <Navbar />
       <Sidebar />
       <div className="h-full ml-14 mt-2 mb-10 md:ml-64">
+        <div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
           <div className="md:col-span-2 xl:col-span-3">
             <h3 className="text-lg font-semibold">What's New List</h3>
@@ -70,6 +71,35 @@ const AdminDashboard = () => {
                 <Card {...card} />
             </div>
             ))}
+        </div>
+        </div>
+        <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
+          <div className="md:col-span-2 xl:col-span-3">
+            <h3 className="text-lg font-semibold">What's New List</h3>
+          </div>
+        </div>
+        <div className="flex overflow-x-auto">
+            {cardData.map((card, index) => (
+            <div key={index} className="flex-shrink-0 w-1/6 p-4">
+                <Card {...card} />
+            </div>
+            ))}
+        </div>
+        </div>
+        <div className="h-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
+          <div className="md:col-span-2 xl:col-span-3">
+            <h3 className="text-lg font-semibold">What's New List</h3>
+          </div>
+        </div>
+        <div className="flex overflow-x-auto">
+            {cardData.map((card, index) => (
+            <div key={index} className="flex-shrink-0 w-1/6 p-4">
+                <Card {...card} />
+            </div>
+            ))}
+        </div>
         </div>
       </div>
     </div>

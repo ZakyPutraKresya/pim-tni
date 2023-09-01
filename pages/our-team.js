@@ -5,6 +5,7 @@ import CarouselSmall from "@/components/CarouselSmall";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Head from "next/head";
 import ListOurTeam from "@/components/ListOurTeam";
+import Footer from "@/components/Footer";
 
 const OurTeam = () => {
   const carouselImg =
@@ -39,6 +40,7 @@ const OurTeam = () => {
         </div>
         <ListOurTeam listData={data} />
       </div>
+      <Footer></Footer>
     </div>
   );
 };

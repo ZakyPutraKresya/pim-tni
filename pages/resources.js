@@ -5,6 +5,7 @@ import CarouselSmall from "@/components/CarouselSmall";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Head from "next/head";
 import CardResources from "@/components/CardResources";
+import Footer from "@/components/Footer";
 
 const Resources = () => {
   const carouselImg =
@@ -22,6 +23,7 @@ const Resources = () => {
       <CarouselSmall headerImg={carouselImg} titlePage={titlePage}/>
       <Breadcrumbs data={breadcrumbs} />
       <CardResources />
+      <Footer></Footer>
     </div>
   );
 };

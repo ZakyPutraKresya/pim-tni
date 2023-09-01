@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Head from "next/head";
 import EventsSection from "@/components/EventsSection";
 import NewsModal from "@/components/NewsModal";
+import Footer from "@/components/Footer";
 
 const Events = () => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -89,6 +90,7 @@ const Events = () => {
         closeModal={closeModal}
         modalData={selectedEvent}
       />
+      <Footer></Footer>
     </div>
   );
 };

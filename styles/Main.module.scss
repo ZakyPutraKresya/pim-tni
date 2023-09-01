@@ -1,8 +1,10 @@
 /* Apply font to the entire component */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
+
 .body {
   font-family: 'Montserrat', sans-serif;
+  background-color: #f7f7f7 !important;
   /* Other global styles can also be applied here */
 }
 /* Ganti font pada judul navbar dan tombol navigasi */

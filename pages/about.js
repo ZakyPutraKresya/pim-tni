@@ -5,6 +5,7 @@ import CarouselSmall from "@/components/CarouselSmall";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Head from "next/head";
 import CardAboutUs from "@/components/CardAboutUs";
+import Footer from "@/components/Footer";
 
 const About = () => {
   const carouselImg =
@@ -22,6 +23,7 @@ const About = () => {
       <CarouselSmall headerImg={carouselImg} titlePage={titlePage}/>
       <Breadcrumbs data={breadcrumbs} />
       <CardAboutUs />
+      <Footer></Footer>
     </div>
   );
 };

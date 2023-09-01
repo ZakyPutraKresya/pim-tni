@@ -9,6 +9,7 @@ import AboutSection from "@/components/AboutSection";
 import MissionSection from "@/components/MissionSection";
 import VisionSection from "@/components/VIsionSection";
 import OurNewsSection from "@/components/OurNewsSection";
+import Footer from "@/components/Footer";
 
 const AboutUs = () => {
   const carouselImg =
@@ -75,6 +76,7 @@ const AboutUs = () => {
       <MissionSection {...missionData} />
       <VisionSection {...visionData} />
       <OurNewsSection {...newsData} />
+      <Footer></Footer>
     </div>
   );
 };

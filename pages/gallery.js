@@ -5,6 +5,7 @@ import CarouselSmall from "@/components/CarouselSmall";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Head from "next/head";
 import CardGallery from "@/components/CardGallery";
+import Footer from "@/components/Footer";
 
 const Gallery = () => {
     const titlePage = "GALLERY"
@@ -39,6 +40,7 @@ const Gallery = () => {
         <CarouselSmall headerImg={carouselImg} titlePage={titlePage}/>
         <Breadcrumbs data={breadcrumbs} />
         <CardGallery data={cardData} />
+        <Footer></Footer>
     </div>
     )
 }
