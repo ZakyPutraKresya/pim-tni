@@ -3,6 +3,7 @@ import { FaUserAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 import Image from "next/image";
 import { IoMdLock } from "react-icons/io";
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -44,11 +45,6 @@ const LoginForm = () => {
     let errors = {};
     if (username.length === 0) errors["username"] = "Required";
     if (password.length === 0) errors["password"] = "Required";
-
-    if (errors !== {}) {
-      setErrors(errors);
-      console.log(errors);
-    }
 
     if ((username.length && password.length) !== 0) {
       setErrors({ username: "", password: "" });
@@ -124,9 +120,11 @@ const LoginForm = () => {
         )}
         {error && <div className="text-white font-semibold">{error}</div>}
 
-        <button type="submit" className={styles.loginButton}>
-          Login
-        </button>
+        <Link href="/admin" legacyBehavior>
+          <button className={styles.loginButton}>
+            Login
+          </button>
+        </Link>
       </form>
     </div>
   );

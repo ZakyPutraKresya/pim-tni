@@ -36,7 +36,7 @@ const Navbar = () => {
         <ul className="flex space-x-4">
           <li className="relative">
             <Link href='' className="text-white flex" onClick={() => handleDropdownClick('servicesDropdown')}>
-              About Us
+              About
               <FaCaretDown className="mt-1 ml-1 transform" />
             </Link>
             <ul className={`${styles['dropdown-content']} ${dropdowns['servicesDropdown'] ? '' : 'hidden'}`} style={{
@@ -45,7 +45,7 @@ const Navbar = () => {
             }}>
               <li>
                 <Link href="/about" legacyBehavior className="block">
-                  About us
+                  About Pusinfomar
                 </Link>
               </li>
               <li>

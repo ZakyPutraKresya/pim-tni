@@ -17,7 +17,6 @@ const Home = () => {
     { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
     { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
     { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
-    // ... Add more card data here ...
   ];
 
   return (

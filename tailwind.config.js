@@ -10,6 +10,12 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      backgroundColor: {
+        'neon-blue': '#0d6efd',
+      },
+      textColor: {
+        'neon-blue': '#0d6efd',
+      },
     },
   },
   plugins: [require('tailwind-clip-path')],
