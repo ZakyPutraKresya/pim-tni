@@ -7,6 +7,7 @@ import CarouselBig from '@/components/CarouselBig';
 import WhatsNew from '@/components/WhatsNew';
 import IntroSection from '@/components/IntroSection';
 import QuickLinks from '@/components/QuickLinks';
+import Footer from '@/components/Footer';
 
 const Home = () => {
   const cardData = [
@@ -38,6 +39,7 @@ const Home = () => {
         imageUrl="https://www.ifc.org.sg/ifc2web/Scripts/public/common/images/contactUS/HomePageImage.jpg"
       />
       <QuickLinks></QuickLinks>
+      <Footer></Footer>
     </div>
   );
 };

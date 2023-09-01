@@ -25,7 +25,7 @@ const CarouselBig = () => {
     prevBtn.addEventListener('click', prevSlide);
     nextBtn.addEventListener('click', nextSlide);
 
-    const interval = setInterval(nextSlide, 3000);
+    const interval = setInterval(nextSlide, 5000);
 
     return () => {
       prevBtn.removeEventListener('click', prevSlide);
