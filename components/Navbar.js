@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <Link href='/'>
           <div className="flex items-center">
-            <img src="/img/png/logo.png" className={`h-16 w-72 mr-4`} alt="Logo" />
+            <img src="/img/png/logo.png" className={`h-20 w-80 mr-4`} alt="Logo" />
           </div>
         </Link>
         <ul className="flex space-x-4">
