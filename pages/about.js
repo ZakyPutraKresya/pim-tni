@@ -8,7 +8,7 @@ import CardAboutUs from "@/components/CardAboutUs";
 
 const About = () => {
   const carouselImg =
-    "https://www.shipspotting.com/photos/middle/7/4/2/3011247.jpg?cb=0";
+    "/img/jpg/header.jpg";
   const breadcrumbs = [{ text: "Home", link: "/" }, { text: "About" }];
   const titlePage = "ABOUT"
   return (

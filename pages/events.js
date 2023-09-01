@@ -38,7 +38,7 @@ const Events = () => {
   };
 
   const carouselImg =
-    "https://www.ifc.org.sg/ifc2web/CarouselImages/UK%20DG%20DoT.jpeg";
+    "/img/jpg/header.jpg";
   const titlePage = "EVENTS";
   const eventsData = [
     {

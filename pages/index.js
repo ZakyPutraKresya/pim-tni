@@ -10,12 +10,12 @@ import QuickLinks from '@/components/QuickLinks';
 
 const Home = () => {
   const cardData = [
-    { title: 'Card Title 1', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
-    { title: 'Card Title 2', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
-    { title: 'Card Title 3', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
-    { title: 'Card Title 3', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
-    { title: 'Card Title 3', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
-    { title: 'Card Title 3', imageUrl: 'https://photos.marinetraffic.com/ais/showphoto.aspx?shipid=726761' },
+    { title: 'Card Title 1', imageUrl: '/img/jpg/CardTitle.jpeg' },
+    { title: 'Card Title 2', imageUrl: '/img/jpg/CardTitle.jpeg' },
+    { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
+    { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
+    { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
+    { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
     // ... Add more card data here ...
   ];
 

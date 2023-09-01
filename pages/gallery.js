@@ -8,7 +8,7 @@ import CardGallery from "@/components/CardGallery";
 
 const Gallery = () => {
     const titlePage = "GALLERY"
-    const carouselImg = 'https://www.shipspotting.com/photos/middle/7/4/2/3011247.jpg?cb=0'
+    const carouselImg = '/img/jpg/gallery.jpg'
     const breadcrumbs = [
         { text: 'Home', link: '/' },
         { text: 'Gallery' },

@@ -16,7 +16,7 @@ const Card = ({ title, imageUrl }) => {
             <FaStar />
           </div>
           <div className="title flex-grow bg-transparent w-12 h-12">
-            <p className="text-sm md:text-base mt-3 ml-2 font-bold">{title}</p>
+            <p className="text-sm md:text-base mt-3 ml-2 font-bold text-white">{title}</p>
           </div>
         </div>
       </div>

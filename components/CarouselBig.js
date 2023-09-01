@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Main.module.scss'
 
 const images = [
-  'https://www.shipspotting.com/photos/middle/7/4/2/3011247.jpg?cb=0',
-  'https://www.shipspotting.com/photos/big/9/2/5/2559529.jpg?cb=0',
-  'https://www.ifc.org.sg/ifc2web/CarouselImages/ROK%20deputy%20min%20visit.png',
+  '/img/png/slideshow1.png',
+  '/img/png/slideshow2.jpg',
+  '/img/png/slideshow3.png',
 ];
 
 const CarouselBig = () => {
