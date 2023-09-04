@@ -44,7 +44,7 @@ const Navbar = () => {
                 right: -50
             }}>
               <li>
-                <Link href="/about" legacyBehavior className="block">
+                <Link href="/aboutus" legacyBehavior className="block">
                   About Pusinfomar
                 </Link>
               </li>
@@ -62,7 +62,8 @@ const Navbar = () => {
             </Link>
 
             <ul className={`${styles['dropdown-content']} ${dropdowns['moreDropdown'] ? '' : 'hidden'}`} style={{ minWidth: '200px', right: -50 }}>
-              <li><Link href="/resources" className="block">Resources</Link></li>
+              <li><Link href="/report" className="block">Pusinfomar TNI Report</Link></li>
+              <li><Link href="/infographis" className="block">Infographis</Link></li>
             </ul>
           </li>
           <li><Link href="/events" className="text-white">Events</Link></li>

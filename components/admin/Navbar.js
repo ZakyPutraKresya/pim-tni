@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full flex items-center justify-between text-white z-10 dark:bg-gray-800">
-      <div className="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800 dark:bg-gray-800 border-none relative">
+      <div className="flex items-center justify-start md:justify-center pl-3 md:w-64 h-14 bg-blue-800 dark:bg-gray-800 border-none fixed">
         <Link href="/">
           <div className="flex items-center">
             <img
@@ -18,10 +18,10 @@ const Navbar = () => {
             />
           </div>
         </Link>
-        <div className="absolute right-0 top-0 bottom-0 w-px bg-slate-500 dark:bg-gray-600"></div>
       </div>
 
-      <div className="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right">
+      <div className="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right ml-auto">
+
         <ul className="flex items-center">
           <li>
             <div className="block w-px h-6 mx-3 bg-gray-400 dark:bg-gray-700"></div>

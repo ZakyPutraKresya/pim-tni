@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import ExistingImageCard from "./ExistingImageCard";
 
-const Card = ({ title, imageUrl, author, lastUpdate }) => {
+const CardSlideshow = ({ imageUrl, author, lastUpdate }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newTitle, setNewTitle] = useState(title);
   const [newImageUrl, setNewImageUrl] = useState(imageUrl);
-  const [selectedOption, setSelectedOption] = useState(null);
   const [activeTab, setActiveTab] = useState("library"); // "library" or "existingList"
+  const [activeImageId, setActiveImageId] = useState(null);
+
+  const handleImageClick = (id) => {
+    setActiveImageId(id);
+  };
 
   const hrefOptions = [
     { label: "Option 1", value: "https://example.com/option1" },
@@ -59,10 +62,11 @@ const Card = ({ title, imageUrl, author, lastUpdate }) => {
     setIsModalOpen(false);
   };
 
-  const existingImages = [
-    { name: "Image 1", url: "/img/png/logo.png" },
-    { name: "Image 2", url: "/img/png/logo.png" },
-    // tambahkan gambar-gambar lain yang ada sesuai kebutuhan
+  const dummyData = [
+    { id: 1, name: "Image 1", url: "/img/png/logo.png" },
+    { id: 2, name: "Image 2", url: "/img/png/logo.png" },
+    { id: 3, name: "Image 3", url: "/img/png/logo.png" },
+    // Tambahkan data gambar lainnya sesuai kebutuhan
   ];
 
   return (
@@ -74,11 +78,7 @@ const Card = ({ title, imageUrl, author, lastUpdate }) => {
         onClick={handleCardClick}
       >
         <div className="relative">
-          <img
-            src={newImageUrl}
-            alt={title}
-            className="w-full h-20 object-cover"
-          />
+          <img src={newImageUrl} className="w-full h-20 object-cover" />
           {isHovered && (
             <div className="absolute inset-0 flex items-center justify-center bg-black opacity-70 transition-opacity">
               <p className="text-white font-semibold text-lg">Click to Edit</p>
@@ -86,7 +86,6 @@ const Card = ({ title, imageUrl, author, lastUpdate }) => {
           )}
         </div>
         <div className="px-3 py-4">
-          <div className="font-bold text-md text-white mb-2">{title}</div>
           <p className="text-white text-xs">
             Author: <span className="font-semibold">{author}</span>
           </p>
@@ -99,7 +98,10 @@ const Card = ({ title, imageUrl, author, lastUpdate }) => {
         {isModalOpen && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
             <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
-            <div className="dark:bg-gray-800 rounded-lg z-10 absolute p-4 w-[700px] shadow-md">
+            <div
+              className="dark:bg-gray-800 rounded-lg z-10 absolute p-4 w-[700px] shadow-md"
+              style={{ maxHeight: 600, overflowY: "scroll" }}
+            >
               <div className="mb-4">
                 <div className="flex justify-center mb-2">
                   <button
@@ -142,28 +144,21 @@ const Card = ({ title, imageUrl, author, lastUpdate }) => {
                       List Image:
                     </label>
                     <div className="flex flex-wrap -m-2">
-                      {existingImages.map((image, index) => (
+                      {dummyData.map((image) => (
                         <div
-                          key={index}
+                          key={image.id}
                           className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-2"
                         >
-                          <ExistingImageCard imageUrl={image.url} />
+                          <ExistingImageCard
+                            imageUrl={image.url}
+                            isActive={activeImageId === image.id}
+                            onClick={() => handleImageClick(image.id)}
+                          />
                         </div>
                       ))}
                     </div>
                   </>
                 )}
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-200 text-sm font-bold mb-2">
-                  New Title:
-                </label>
-                <input
-                  type="text"
-                  value={newTitle}
-                  onChange={(e) => setNewTitle(e.target.value)}
-                  className="appearance-none w-full dark:bg-gray-700 py-2 px-3 text-gray-200 rounded leading-tight focus:outline-none focus:shadow-outline"
-                />
               </div>
               <div className="flex justify-end">
                 <button
@@ -187,4 +182,4 @@ const Card = ({ title, imageUrl, author, lastUpdate }) => {
   );
 };
 
-export default Card;
+export default CardSlideshow;
