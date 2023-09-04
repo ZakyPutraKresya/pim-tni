@@ -75,7 +75,7 @@ const AboutUs = () => {
       <AboutSection {...aboutData} />
       <MissionSection {...missionData} />
       <VisionSection {...visionData} />
-      <OurNewsSection {...newsData} />
+      {/* <OurNewsSection {...newsData} /> */}
       <Footer></Footer>
     </div>
   );

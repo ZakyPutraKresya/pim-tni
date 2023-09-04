@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Main.module.scss'
+import fetcher from '@/helpers/fetcher';
 
 const images = [
   '/img/png/slideshow1.png',
@@ -7,8 +8,26 @@ const images = [
   '/img/png/slideshow3.png',
 ];
 
+export const getSlideshowData = async () => {
+  const params = {
+    method: "GET",
+    url: "http://localhost:3210/api/test",
+    type: "json",
+  };
+  return await fetcher(params).then(json => (json?.data ? json.data : []));
+};
+
+
 const CarouselBig = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imageData, setImageData] = useState([]);
+
+  
+  useEffect(() => {
+    getSlideshowData().then(result => {
+      setImageData(result);
+    });
+  }, []);
 
   useEffect(() => {
     const prevBtn = document.getElementById('prevBtn');
