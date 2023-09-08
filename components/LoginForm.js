@@ -4,57 +4,41 @@ import Image from "next/image";
 import { IoMdLock } from "react-icons/io";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { Cookies } from "react-cookie";
 
 const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isUsernameFocused, setIsUsernameFocused] = useState(false);
-  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-  const [error, setError] = useState("");
-  const [errors, setErrors] = useState([{ username: "", password: "" }]);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+  const cookies = new Cookies();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
 
-  const handleUsernameFocus = () => {
-    setIsUsernameFocused(true);
-    setError("");
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handlePasswordFocus = () => {
-    setIsPasswordFocused(true);
-    setError("");
-  };
-
-  const processLogin = async (username, password) => {
     try {
-      const [success, message] = await login(username, password);
-      if (success) {
-        setError("");
-        router.push("/");
+      const response = await fetch(API_URL+'auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json(); // Mendapatkan data respons dari server
+      if (response.ok) {
+        const token = data.token;
+        cookies.set("token", token, { maxAge: 60 * 60 * 12 })
+        router.push("/admin")
       } else {
-        setError(message);
+        alert(data.message)
       }
     } catch (error) {
-      console.log(error);
-      setError("An error occurred during login");
-      setTimeout(() => {
-        setError("");
-      }, 5000);
+      console.error('Terjadi kesalahan:', error);
     }
   };
 
-  const handleLoginFormSubmit = e => {
-    e.preventDefault();
-    let errors = {};
-    if (username.length === 0) errors["username"] = "Required";
-    if (password.length === 0) errors["password"] = "Required";
-
-    if ((username.length && password.length) !== 0) {
-      setErrors({ username: "", password: "" });
-      processLogin(username, password);
-    }
-  };
-
-  // useEffect(() => {
-  //   inputFocus.current.focus();
-  // }, []);
 
   return (
     <div className={styles.LoginFormContainer}>
@@ -66,65 +50,41 @@ const LoginForm = () => {
         className="mx-auto"
       />
       <p className="text-center mt-2 mb-5 text-white font-semibold">Login</p>
-      <form >
+      <form onSubmit={handleSubmit}>
         <div className="relative">
           <FaUserAlt
-            className={`absolute top-2 left-2 text-xs ${
-              isUsernameFocused ? "text-blue-600" : "text-white"
-            }`}
+            className={`absolute top-2 left-2 text-xs text-white`}
           />
           <input
             className={`focus:bg-white focus:text-black w-full p-1 pl-7 mb-1 ${styles.LoginForm}`}
             type="text"
             name="username"
             placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        {errors.username && (
+        {/* {errors.username && (
           <div className="text-white mb-3 font-semibold">{errors.username}</div>
-        )}
+        )} */}
 
         <div className="relative">
           <IoMdLock
-            className={`text-white absolute top-[7px] left-[6px] ${
-              isPasswordFocused ? "text-blue-600" : "text-white"
-            }`}
+            className={`text-white absolute top-[7px] left-[6px] text-white`}
           />
 
           <input
             className={`focus:bg-white focus:text-black w-full p-1 pl-7 mb-1 ${styles.LoginForm}`}
-            type={showPassword ? "text" : "password"}
+            type={"password"}
             name="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            onMouseDown={e => e.preventDefault()}
-            className="absolute right-2 top-0"
-          >
-            {showPassword ? (
-              <FaEyeSlash
-                className={isPasswordFocused ? "text-blue-500" : "text-white"}
-              />
-            ) : (
-              <FaEye
-                className={isPasswordFocused ? "text-blue-500" : "text-white"}
-              />
-            )}
-          </button>
         </div>
-        {errors.password && (
-          <div className="text-white mb-3 font-semibold">{errors.password}</div>
-        )}
-        {error && <div className="text-white font-semibold">{error}</div>}
-
-        <Link href="/admin" legacyBehavior>
-          <button className={styles.loginButton}>
+          <button className={styles.loginButton} type="submit">
             Login
           </button>
-        </Link>
       </form>
     </div>
   );

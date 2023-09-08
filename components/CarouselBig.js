@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '@/styles/Main.module.scss'
 import fetcher from '@/helpers/fetcher';
+import { RingLoader } from 'react-spinners';
 
 const images = [
   '/img/png/slideshow1.png',
@@ -9,12 +10,13 @@ const images = [
 ];
 
 export const getSlideshowData = async () => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
   const params = {
     method: "GET",
-    url: "http://localhost:3210/api/test",
+    url:  API_URL + "images/slideshow",
     type: "json",
   };
-  return await fetcher(params).then(json => (json?.data ? json.data : []));
+  return await fetcher(params).then(json => (json ? json : []));
 };
 
 
@@ -34,11 +36,11 @@ const CarouselBig = () => {
     const nextBtn = document.getElementById('nextBtn');
 
     const nextSlide = () => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
+      setCurrentSlide((prev) => (prev + 1) % 5);
     };
 
     const prevSlide = () => {
-      setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
+      setCurrentSlide((prev) => (prev - 1 + 5) % 5);
     };
 
     prevBtn.addEventListener('click', prevSlide);
@@ -56,7 +58,12 @@ const CarouselBig = () => {
   return (
     <div className={`relative ${styles.carousel}`}>
       <div className={styles['carousel-inner']}>
-        {images.map((image, index) => (
+      {imageData.length === 0 ? (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black font-semibold text-xl text-white">
+        <RingLoader color="#0894da" size={80} /> Loading...
+      </div>
+      ) : (
+        imageData.map((image, index) => (
           <div
             className={styles['carousel-slide']}
             key={index}
@@ -65,9 +72,10 @@ const CarouselBig = () => {
               display: index === currentSlide ? 'block' : 'none',
             }}
           >
-            <img src={image} alt={`Image ${index + 1}`} className="w-full h-screen" />
+            <img src={image.url} alt={`Image ${index + 1}`} className="w-full h-screen" />
           </div>
-        ))}
+        ))
+      )}
       </div>
       <button id="prevBtn" className="absolute left-0 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-gray-800 text-white">
         ←

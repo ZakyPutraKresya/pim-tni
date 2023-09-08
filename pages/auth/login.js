@@ -9,13 +9,6 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Implement your login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
-  };
-
   const router = useRouter();
 
   useEffect(() => {
@@ -39,6 +32,21 @@ const Login = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const { req, res } = context;
+
+  // Check for the token in the request headers or cookies
+  const token = req.headers['authorization'] || req.cookies['token'];
+
+  if (token) {
+    // Redirect to the root path
+    res.writeHead(302, { Location: '/admin' });
+    res.end();
+  }
+
+  return { props: {} };
 };
 
 export default Login;

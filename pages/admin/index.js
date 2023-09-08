@@ -5,6 +5,7 @@ import Navbar from "@/components/admin/Navbar";
 import Sidebar from "@/components/admin/Sidebar";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import withAuth from "@/components/Auth/withAuth";
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -133,4 +134,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default withAuth(AdminDashboard);

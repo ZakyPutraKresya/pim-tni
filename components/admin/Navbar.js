@@ -1,9 +1,15 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
+import { Cookies } from "react-cookie";
 
+const cookies = new Cookies();
 const Navbar = () => {
-  const toggleTheme = () => {
-    // Implement your theme toggle logic here
+  const router = useRouter();
+
+  const signOut = () => {
+    cookies.remove("token");
+    router.push("/login");
   };
 
   return (
@@ -27,8 +33,7 @@ const Navbar = () => {
             <div className="block w-px h-6 mx-3 bg-gray-400 dark:bg-gray-700"></div>
           </li>
           <li>
-            <Link href="/login" legacyBehavior>
-            <a className="flex items-center mr-4 hover:text-blue-100">
+            <a href="#" onClick={signOut} className="flex items-center mr-4 hover:text-blue-100">
               <span className="inline-flex mr-1">
                 <svg
                   className="w-5 h-5"
@@ -47,7 +52,6 @@ const Navbar = () => {
               </span>
               Logout
             </a>
-            </Link>
           </li>
         </ul>
       </div>
