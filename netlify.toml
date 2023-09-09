@@ -2,10 +2,10 @@
   command = "npm run build"
   publish = ".next"
 
+[[redirects]]
+  from = "/login"
+  to = "/auth/login"
+  status = 200
+  
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[[redirects]]
-  from = "/auth/login"
-  to = "/login"
-  status = 200
