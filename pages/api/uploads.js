@@ -12,7 +12,7 @@ const post = (req, res) => {
   const form = new IncomingForm();
   form.parse(req, async function (err, fields, files) {
     const fileName = fields.fileName[0];
-    const filePath = `./public/uploads/${fileName}`;
+    const filePath = `/public/uploads/${fileName}`;
     
     // Membuat direktori "public/uploads" jika belum ada
     ensureDirectoryExists(path.dirname(filePath));
@@ -31,7 +31,7 @@ const saveFile = (file, fileName) => {
   if (file[0].filepath) {
     // Memeriksa apakah properti filepath ada
     const data = fs.readFileSync(file[0].filepath);
-    fs.writeFileSync(`./public/uploads/${fileName}`, data);
+    fs.writeFileSync(`/public/uploads/${fileName}`, data);
 
     fs.unlinkSync(file[0].filepath); // Menghapus file sementara
     return;
