@@ -4,7 +4,7 @@
 
 [[redirects]]
   from = "/login"
-  to = "/auth/login"
+  to = "/auth/login.js"
   status = 200
   force = true
 
