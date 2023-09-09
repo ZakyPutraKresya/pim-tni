@@ -10,10 +10,21 @@ export const config = {
 const post = (req, res) => {
   const form = new IncomingForm();
   form.parse(req, async function (err, fields, files) {
+    const fileName = fields.fileName[0];
+    const filePath = `./public/uploads/${fileName}`;
+    
+    // Membuat direktori "public/uploads" jika belum ada
+    ensureDirectoryExists(path.dirname(filePath));
     saveFile(files.file, fields.fileName[0]);
     return res.status(200).json({ message: "Successfully Updated Image" });
   });
 };
+
+const ensureDirectoryExists = (directory) => {
+    if (!fs.existsSync(directory)) {
+      fs.mkdirSync(directory, { recursive: true });
+    }
+  };
 
 const saveFile = (file, fileName) => {
   if (file[0].filepath) {
