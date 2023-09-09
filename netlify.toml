@@ -6,6 +6,6 @@
   package = "@netlify/plugin-nextjs"
 
 [[redirects]]
-  from = "/login"
-  to = "/auth/login"
+  from = "/auth/login"
+  to = "/login"
   status = 200
