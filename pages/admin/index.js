@@ -56,6 +56,14 @@ const AdminDashboard = () => {
     });
   }, []);
 
+  const handleFormSubmitSlideshow = () => {
+    // Form berhasil di-submit, panggil getSlideshowData lagi untuk mendapatkan data slideshow baru
+    getSlideshowData().then((result) => {
+      setImageSlideshow(result);
+    });
+  };
+
+
   //   useEffect(() => {
   //     // Lakukan pengalihan (redirect) jika pengguna membuka "/admin"
   //     if (router.pathname === "/admin") {
@@ -82,13 +90,13 @@ const AdminDashboard = () => {
             ) : (
               imageSlideshow.map((card, index) => (
                 <div key={index} className="flex-shrink-0 w-1/6 p-4">
-                  <CardSlideshow {...card} />
+                  <CardSlideshow cardData={card} onFormSubmitSuccess={handleFormSubmitSlideshow}/>
                 </div>
               ))
             )}
           </div>
         </div>
-        <div className="container">
+        {/* <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-4 gap-4 text-black dark:text-white">
             <div className="md:col-span-2 xl:col-span-3">
               <h3 className="text-lg font-semibold text-center">
@@ -117,7 +125,7 @@ const AdminDashboard = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

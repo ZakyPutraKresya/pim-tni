@@ -9,6 +9,7 @@ const Navbar = () => {
 
   const signOut = () => {
     cookies.remove("token");
+    cookies.remove("username");
     router.push("/login");
   };
 

@@ -30,6 +30,7 @@ const LoginForm = () => {
       if (response.ok) {
         const token = data.token;
         cookies.set("token", token, { maxAge: 60 * 60 * 12 })
+        cookies.set("username", data.username, { maxAge: 60 * 60 * 12 })
         router.push("/admin")
       } else {
         alert(data.message)
