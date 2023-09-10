@@ -2,7 +2,6 @@ import axios from "axios";
 import moment from "moment/moment";
 import React, { useState } from "react";
 import { Cookies } from "react-cookie";
-import { getSlideshowData } from "../CarouselBig";
 
 const CardSlideshow = ({ cardData, onFormSubmitSuccess }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -19,65 +18,27 @@ const CardSlideshow = ({ cardData, onFormSubmitSuccess }) => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
-  
-  const saveImage = async (name) => {
-    const epochTime = new Date().getTime();
-
-    // Pisahkan nama asli dan ekstensi file
-    const originalName = name;
-    const fileExtension = originalName.split(".").pop();
-
-    // Buat nama file dengan format 'namaOri_epochTime.ext'
-    const fileName = `/uploads/${originalName.replace(
-      `.${fileExtension}`,
-      ""
-    )}_${epochTime}.${fileExtension}`;
-
-    const response = await fetch(API_URL + "images/upload", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        author: cookies.get("username"),
-        fileName,
-        id: dataId
-      }),
-    });
-
-    if (response.status === 200) {
-      return {
-        status: "ok",
-        fileName: fileName,
-      };
-    } else {
-      return "error"
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await saveImage(e.target.file.files[0].name).then(async function (val) {
-      if (val.status === "ok") {
-        const body = new FormData();
-        body.append("file", e.target.file.files[0]);
-        body.append("fileName", val.fileName.split("s/")[1])
-        const response = await fetch("/api/uploads", {
-          method: "POST",
-          body,
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          onFormSubmitSuccess();
-          setIsModalOpen(false);
-          alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
-        } else {
-          alert("Terjadi kesalahan saat mengunggah file."); // Menampilkan pesan kesalahan default jika respons tidak berhasil
-        }
-      }
+    const body = new FormData();
+    body.append("file", e.target.file.files[0]);
+    body.append("author", cookies.get("username"));
+    body.append("id", dataId);
+    const response = await fetch(API_URL+"images/upload", {
+      method: "POST",
+      body,
     });
+
+    if (response.ok) {
+      const data = await response.json();
+      onFormSubmitSuccess();
+      setIsModalOpen(false);
+      alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
+    } else {
+      alert("Terjadi kesalahan saat mengunggah file."); // Menampilkan pesan kesalahan default jika respons tidak berhasil
+    }
   };
 
   return (
@@ -90,7 +51,7 @@ const CardSlideshow = ({ cardData, onFormSubmitSuccess }) => {
         onClick={handleCardClick}
       >
         <div className="relative">
-          <img src={cardData.url} className="w-full h-20 object-cover" />
+          <img src={API_URL + cardData.url} className="w-full h-20 object-cover" />
           {isHovered && (
             <div className="absolute inset-0 flex items-center justify-center bg-black opacity-70 transition-opacity">
               <p className="text-white font-semibold text-lg">Click to Edit</p>

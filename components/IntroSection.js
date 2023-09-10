@@ -1,6 +1,6 @@
 import React from 'react';
 
-const IntroSection = ({ title, content, imageUrl }) => {
+const IntroSection = ({ title, description, image }) => {
   return (
       <div className="container mx-auto my-12 px-12" style={{marginTop: 150}}>
       <div className="flex">
@@ -8,10 +8,10 @@ const IntroSection = ({ title, content, imageUrl }) => {
           <h2 className="text-2xl font-bold mb-4">
             <b>{title}</b>
           </h2>
-          <p className="textBlack">{content}</p>
+          <p className="textBlack">{description}</p>
         </div>
         <div className="w-1/3">
-          <img src={imageUrl} className="w-full h-auto" alt="Image" />
+          <img src={image} className="w-full h-auto" alt="Image" />
         </div>
       </div>
     </div>

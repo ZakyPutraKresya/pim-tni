@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import useStore from '@/store/useStore';
 import styles from '@/styles/Main.module.scss'
 import Navbar from '@/components/Navbar';
 import CarouselBig from '@/components/CarouselBig';
@@ -8,8 +7,21 @@ import WhatsNew from '@/components/WhatsNew';
 import IntroSection from '@/components/IntroSection';
 import QuickLinks from '@/components/QuickLinks';
 import Footer from '@/components/Footer';
+import fetcher from '@/helpers/fetcher';
+
+export const getWelcomeData = async () => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
+  const params = {
+    method: "GET",
+    url:  API_URL + "dashboard",
+    type: "json",
+  };
+  return await fetcher(params).then(json => (json ? json : []));
+};
 
 const Home = () => {
+  const [welcomeData, setWelcomeData] = useState([])
+
   const cardData = [
     { title: 'Card Title 1', imageUrl: '/img/jpg/CardTitle.jpeg' },
     { title: 'Card Title 2', imageUrl: '/img/jpg/CardTitle.jpeg' },
@@ -18,6 +30,12 @@ const Home = () => {
     { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
     { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
   ];
+
+  useEffect(() => {
+    getWelcomeData().then(result => {
+      setWelcomeData(result[0]);
+    });
+  }, []);
 
   return (
     <div className={styles.body}>
@@ -33,9 +51,7 @@ const Home = () => {
       <CarouselBig></CarouselBig>
       <WhatsNew data={cardData}></WhatsNew>
       <IntroSection
-        title="Welcome to Pusinfomar TNI"
-        content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae arcu bibendum, ultricies lectus non, interdum tortor. Suspendisse potenti. Nulla facilisi. Sed eget scelerisque ex. Find out more about us"
-        imageUrl="https://www.ifc.org.sg/ifc2web/Scripts/public/common/images/contactUS/HomePageImage.jpg"
+        {...welcomeData}
       />
       <QuickLinks></QuickLinks>
       <Footer></Footer>
