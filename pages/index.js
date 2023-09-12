@@ -13,7 +13,7 @@ export const getWelcomeData = async () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL
   const params = {
     method: "GET",
-    url:  API_URL + "",
+    url:  API_URL + "dashboard",
     type: "json",
   };
   return await fetcher(params).then(json => (json ? json : []));
