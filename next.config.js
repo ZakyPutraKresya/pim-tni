@@ -12,6 +12,10 @@ module.exports = {
         source: "/login",
         destination: "/auth/login",
       },
+      {
+        source: '/api/:path*',
+        destination: '/middleware/proxy',
+      },
     ];
   },
 };
