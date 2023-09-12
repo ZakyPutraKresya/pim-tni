@@ -14,6 +14,7 @@ const fetcher = async params => {
     const newParams = {
       method,
       headers,
+      mode: 'cors',
       body: JSON.stringify(body),
     }
 
