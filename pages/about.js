@@ -11,7 +11,7 @@ const About = () => {
   const carouselImg =
     "/img/jpg/header.jpg";
   const breadcrumbs = [{ text: "Home", link: "/" }, { text: "About" }];
-  const titlePage = "ABOUT"
+  const titlePage = "";
   return (
     <div className={styles.body}>
       <Head>

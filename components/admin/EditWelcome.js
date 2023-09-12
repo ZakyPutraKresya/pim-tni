@@ -11,12 +11,13 @@ const EditWelcome = ({ welcomeData, onSave, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const body = new FormData();
+    body.append("file", e.target.file.files[0]);
+    body.append("title", title);
+    body.append("description", description);
     const response = await fetch(API_URL+"dashboard", {
         method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-          },
-        body: JSON.stringify({ title, description }),
+        body
     });
 
     if (response.status === 200) {
@@ -65,6 +66,7 @@ const EditWelcome = ({ welcomeData, onSave, onClose }) => {
             <input
               type="file"
               accept="image/*"
+              name="file"
               className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>

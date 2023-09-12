@@ -60,7 +60,7 @@ const AboutUs = () => {
       // Add more news items as needed
     ],
   };
-  const titlePage = "ABOUT US"
+  const titlePage = ""
   return (
     <div className={styles.body}>
       <Head>

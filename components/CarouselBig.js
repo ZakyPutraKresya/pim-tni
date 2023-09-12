@@ -3,14 +3,9 @@ import styles from '@/styles/Main.module.scss'
 import fetcher from '@/helpers/fetcher';
 import { RingLoader } from 'react-spinners';
 
-const images = [
-  '/img/png/slideshow1.png',
-  '/img/png/slideshow2.jpg',
-  '/img/png/slideshow3.png',
-];
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 export const getSlideshowData = async () => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL
   const params = {
     method: "GET",
     url:  API_URL + "images/slideshow",
@@ -72,7 +67,7 @@ const CarouselBig = () => {
               display: index === currentSlide ? 'block' : 'none',
             }}
           >
-            <img src={image.url} alt={`Image ${index + 1}`} className="w-full h-screen" />
+            <img src={API_URL + image.url} alt={`Image ${index + 1}`} className="w-full h-screen" />
           </div>
         ))
       )}

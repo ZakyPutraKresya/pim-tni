@@ -33,7 +33,7 @@ const Navbar = () => {
             <img src="/img/png/logo.png" className={`h-20 w-80 mr-4`} alt="Logo" />
           </div>
         </Link>
-        <ul className="flex space-x-4">
+        <ul className="flex space-x-4 ">
           <li className="relative">
             <Link href='' className="text-white flex" onClick={() => handleDropdownClick('servicesDropdown')}>
               About

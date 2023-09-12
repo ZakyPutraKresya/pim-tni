@@ -16,6 +16,7 @@ const AdminDashboard = () => {
   const [imageSlideshow, setImageSlideshow] = useState([]);
   const [welcomeData, setWelcomeData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const handleEditClick = () => {
     setIsModalOpen(true);
@@ -32,44 +33,6 @@ const AdminDashboard = () => {
     });
   };
 
-  const cardData = [
-    {
-      title: "Card Title 1",
-      imageUrl: "/img/jpg/CardTitle.jpeg",
-      author: "John Doe",
-      lastUpdate: "2023-09-01",
-    },
-    {
-      title: "Card Title 2",
-      imageUrl: "/img/jpg/CardTitle.jpeg",
-      author: "Jane Smith",
-      lastUpdate: "2023-09-02",
-    },
-    {
-      title: "Card Title 3",
-      imageUrl: "/img/jpg/CardTitle.jpeg",
-      author: "Alice Johnson",
-      lastUpdate: "2023-09-03",
-    },
-    {
-      title: "Card Title 4",
-      imageUrl: "/img/jpg/CardTitle.jpeg",
-      author: "Bob Wilson",
-      lastUpdate: "2023-09-04",
-    },
-    {
-      title: "Card Title 5",
-      imageUrl: "/img/jpg/CardTitle.jpeg",
-      author: "Eve Brown",
-      lastUpdate: "2023-09-05",
-    },
-    {
-      title: "Card Title 6",
-      imageUrl: "/img/jpg/CardTitle.jpeg",
-      author: "Charlie Davis",
-      lastUpdate: "2023-09-06",
-    },
-  ];
   useEffect(() => {
     getSlideshowData().then((result) => {
       setImageSlideshow(result);
@@ -135,7 +98,7 @@ const AdminDashboard = () => {
             </div>
             <div className="w-1/3">
               <img
-                src={welcomeData.image}
+                src={API_URL + welcomeData.image}
                 className="w-full h-auto rounded"
                 alt="Image"
               />

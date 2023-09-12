@@ -1,6 +1,7 @@
 import React from 'react';
 
 const IntroSection = ({ title, description, image }) => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   return (
       <div className="container mx-auto my-12 px-12" style={{marginTop: 150}}>
       <div className="flex">
@@ -11,7 +12,7 @@ const IntroSection = ({ title, description, image }) => {
           <p className="textBlack">{description}</p>
         </div>
         <div className="w-1/3">
-          <img src={image} className="w-full h-auto" alt="Image" />
+          <img src={API_URL + image} className="w-full h-auto" alt="Image" />
         </div>
       </div>
     </div>
