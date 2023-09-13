@@ -21,26 +21,48 @@ export const getForewordData = async () => {
   return await fetcher(params).then((json) => (json ? json : []));
 };
 
+export const getAboutDescData = async () => {
+  const params = {
+    method: "GET",
+    url: API_URL + "about/description",
+    type: "json",
+  };
+  return await fetcher(params).then((json) => (json ? json : []));
+};
+
 const About = () => {
   const [forewordData, setForewordData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [aboutData, setAboutData] = useState([]);
 
   useEffect(() => {
     getForewordData().then((result) => {
       setForewordData(result);
     });
+    getAboutDescData().then((result) => {
+      setAboutData(result);
+    });
   }, []);
+
+  useEffect(() => {
+    if (forewordData.length > 0) {
+      setIsLoading(false);
+    }
+  }, [forewordData])
 
   const handleSaveForeword = () => {
     getForewordData().then((result) => {
       setForewordData(result);
     });
   };
-
-  const aboutData = {
-    title: "About PusinfomarTNI",
-    paragraphs:
-      "Established on 27th April 2009, the Information Fusion Centre (IFC) is a regional Maritime Security (MARSEC) centre situated at the Changi Command and Control Centre (CC2C) and hosted by the Republic of Singapore Navy (RSN). \n The IFC aims to facilitate information-sharing and collaboration between its partners to enhance MARSEC. Over the last decade, the IFC has been at the forefront of providing actionable information to cue responses by regional and international navies, coast guards and other maritime agencies to deal with the full range of MARSEC threats and incidents. This includes piracy, sea robbery, maritime terrorism, contraband smuggling, illegal fishing and irregular human migration.",
+  
+  const handleSaveAbout = () => {
+    getAboutDescData().then((result) => {
+      setAboutData(result);
+    });
   };
+  
+
   const missionData = {
     title: "Our Mission",
     paragraph:
@@ -69,7 +91,7 @@ const About = () => {
   };
   return (
     <div className={styles.body}>
-      {forewordData.length === 0 ? (
+      {isLoading ? (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black font-semibold text-xl text-white">
           <RingLoader color="#0894da" size={80} /> Loading...
         </div>
@@ -79,7 +101,7 @@ const About = () => {
           <Sidebar />
           <div className="ml-52 bg-gray-900">
             <Foreword data={forewordData} onSave={handleSaveForeword} />
-            <AboutSection {...aboutData} />
+            <AboutSection data={aboutData} onSave={handleSaveAbout}/>
             <MissionSection {...missionData} />
             <VisionSection {...visionData} />
           </div>
