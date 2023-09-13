@@ -8,18 +8,51 @@ import ListOurTeam from "@/components/ListOurTeam";
 import Footer from "@/components/Footer";
 
 const OurTeam = () => {
-  const carouselImg =
-    "/img/jpg/header.jpg";
-  const breadcrumbs = [{ text: "Home", link: "/" }, { text: "About", link: "/about" }, { text: "Our Team" }];
-  const titlePage = "OUR TEAM"
+  const carouselImg = "/img/jpg/header.jpg";
+  const breadcrumbs = [
+    { text: "Home", link: "/" },
+    { text: "About", link: "/about" },
+    { text: "Our Team" },
+  ];
+  const titlePage = "OUR TEAM";
   const data = [
-    {imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png", personName: "LTC Lester Yong", personDesc: "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies. LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies. LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies."},
-    {imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png", personName: "LTC Lester Yong", personDesc: "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies."},
-    {imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png", personName: "LTC Lester Yong", personDesc: "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies."},
-    {imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png", personName: "LTC Lester Yong", personDesc: "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies."},
-    {imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png", personName: "LTC Lester Yong", personDesc: "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies."},
-    {imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png", personName: "LTC Lester Yong", personDesc: "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies."},
-  ]
+    {
+      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
+      personName: "LTC Lester Yong",
+      personDesc:
+        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies. LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies. LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
+    },
+    {
+      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
+      personName: "LTC Lester Yong",
+      personDesc:
+        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
+    },
+    {
+      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
+      personName: "LTC Lester Yong",
+      personDesc:
+        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
+    },
+    {
+      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
+      personName: "LTC Lester Yong",
+      personDesc:
+        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
+    },
+    {
+      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
+      personName: "LTC Lester Yong",
+      personDesc:
+        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
+    },
+    {
+      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
+      personName: "LTC Lester Yong",
+      personDesc:
+        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
+    },
+  ];
   return (
     <div className={styles.body}>
       <Head>
@@ -34,9 +67,15 @@ const OurTeam = () => {
         <br />
         <br />
         <br />
-        <div className="text-3xl font-semibold text-center text-gray-500">Pusinfomar TNI Core team</div>
+        <div className="text-3xl font-semibold text-center text-gray-500">
+          Pusinfomar TNI Core team
+        </div>
         <div className="flex items-center justify-center mt-16">
-          <img src="https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCChart.png" style={{ width: 1000 }} alt="Logo" />
+          <img
+            src="https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCChart.png"
+            style={{ width: 1000 }}
+            alt="Logo"
+          />
         </div>
         <ListOurTeam listData={data} />
       </div>
