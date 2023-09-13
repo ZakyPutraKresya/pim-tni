@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/Main.module.scss";
 import CarouselSmall from "@/components/CarouselSmall";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -8,42 +8,43 @@ import Foreword from "@/components/Foreword";
 import AboutSection from "@/components/AboutSection";
 import MissionSection from "@/components/MissionSection";
 import VisionSection from "@/components/VIsionSection";
-import OurNewsSection from "@/components/OurNewsSection";
 import Footer from "@/components/Footer";
+import { getAboutDescData, getForewordData, getMissionData, getVisionData } from "./admin/about";
+import { RingLoader } from "react-spinners";
 
 const AboutUs = () => {
-  const carouselImg =
-    "/img/jpg/header.jpg";
-  const breadcrumbs = [{ text: "Home", link: "/" }, { text: "About", link: "/about" }, { text: "About Us" }];
-  const aboutData = {
-    title: "About PusinfomarTNI",
-    paragraphs: [
-      "Established on 27th April 2009, the Information Fusion Centre (IFC) is a regional Maritime Security (MARSEC) centre situated at the Changi Command and Control Centre (CC2C) and hosted by the Republic of Singapore Navy (RSN).",
-      "The IFC aims to facilitate information-sharing and collaboration between its partners to enhance MARSEC. Over the last decade, the IFC has been at the forefront of providing actionable information to cue responses by regional and international navies, coast guards and other maritime agencies to deal with the full range of MARSEC threats and incidents. This includes piracy, sea robbery, maritime terrorism, contraband smuggling, illegal fishing and irregular human migration.",
-    ],
-  };
-  const forewordData = {
-    title: "Foreword from Head of Pusinfomar TNI",
-    paragraphs: [
-      "The IFC plays a key role in ensuring safe and secure seas through timely and comprehensive information sharing with our partners. Over the years, we have broadened our range of partnerships to include military and enforcement agencies as well as shipping companies. This has proven useful on numerous occasions when rendering assistance to ships in distress within our AOI.",
-      "The heart and driving force of the IFC are the ILOs who play a crucial role in providing domain expertise, knowledge of local waters and seamless communications with various OPCENs. Additionally, to remain current and valuable to the industry, the IFC continues to update, enhance, and streamline our systems and processes by improving our relationships with our partners through events such as our Regional Maritime Practitioner Programme (RMPP), Maritime Security Info-sharing Exercise (MARISX) and Shared Awareness Meeting (SAM).",
-      "It is the continued cooperation and collaboration with all our partners that has enabled the IFC to consistently safeguard the transition of shippers through our waters.",
-    ],
-    author: {
-      name: "LTC Lester Yong",
-      position: "Head IFC",
-    },
-  };
-  const missionData = {
-    title: "Our Mission",
-    paragraph:
-      "The IFC is to collect and sense-make relevant White Shipping and maritime information in its Area of Interest, in order to produce accurate, reliable, impartial and actionable MARSEC information for related OPCENs and the shipping community, to achieve Safe and Secure Seas for All.",
-  };
-  const visionData = {
-    title: "Our Vision",
-    paragraph:
-      "To be the centre of excellence for fusion and exchange of actionable maritime security information in the IFC's Area of Interest",
-  };
+  const [forewordData, setForewordData] = useState([]);
+  const [aboutData, setAboutData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [missionData, setMissionData] = useState([]);
+  const [visionData, setVisionData] = useState([]);
+
+  const carouselImg = "/img/jpg/header.jpg";
+  const breadcrumbs = [
+    { text: "Home", link: "/" },
+    { text: "About", link: "/about" },
+    { text: "About Us" },
+  ];
+
+  useEffect(() => {
+    getForewordData().then((result) => {
+      setForewordData(result);
+    });
+    getAboutDescData().then((result) => {
+      setAboutData(result);
+    });
+    getMissionData().then((result) => {
+      setMissionData(result);
+    });
+    getVisionData().then((result) => {
+      setVisionData(result);
+    });
+  }, []);
+  useEffect(() => {
+    if (forewordData.length > 0 && aboutData.length > 0 && missionData.length > 0 && visionData.length > 0) {
+      setIsLoading(false);
+    }
+  }, [forewordData, aboutData, missionData, visionData]);
   const newsData = {
     title: "Our Journey",
     newsItems: [
@@ -60,7 +61,7 @@ const AboutUs = () => {
       // Add more news items as needed
     ],
   };
-  const titlePage = ""
+  const titlePage = "";
   return (
     <div className={styles.body}>
       <Head>
@@ -68,15 +69,22 @@ const AboutUs = () => {
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/img/svg/logo.svg" />
       </Head>
-      <Navbar />
-      <CarouselSmall headerImg={carouselImg} titlePage={titlePage}/>
-      <Breadcrumbs data={breadcrumbs} />
-      <Foreword {...forewordData} />
-      <AboutSection {...aboutData} />
-      <MissionSection {...missionData} />
-      <VisionSection {...visionData} />
-      {/* <OurNewsSection {...newsData} /> */}
-      <Footer></Footer>
+      {isLoading ? (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black font-semibold text-xl text-white">
+          <RingLoader color="#0894da" size={80} /> Loading...
+        </div>
+      ) : (
+        <>
+          <Navbar />
+          <CarouselSmall headerImg={carouselImg} titlePage={titlePage} />
+          <Breadcrumbs data={breadcrumbs} />
+          <Foreword data={forewordData} />
+          <AboutSection data={aboutData} />
+          <MissionSection data={missionData} />
+          <VisionSection data={visionData} />
+          <Footer></Footer>
+        </>
+      )}
     </div>
   );
 };
