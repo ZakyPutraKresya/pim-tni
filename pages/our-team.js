@@ -1,58 +1,39 @@
 import Navbar from "@/components/Navbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/Main.module.scss";
 import CarouselSmall from "@/components/CarouselSmall";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Head from "next/head";
 import ListOurTeam from "@/components/ListOurTeam";
 import Footer from "@/components/Footer";
+import { getHeaderTeam, getListTeam } from "@/components/admin/TitleTeam";
+import { RingLoader } from "react-spinners";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const OurTeam = () => {
+  const [data, setData] = useState([]);
+  const [header, setHeader] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const carouselImg = "/img/jpg/header.jpg";
+
+  useEffect(() => {
+    getHeaderTeam().then((result) => {
+      setHeader(result);
+    });
+    getListTeam().then((result) => {
+      setData(result);
+      setIsLoading(false)
+    });
+  }, []);
+
   const breadcrumbs = [
     { text: "Home", link: "/" },
     { text: "About", link: "/about" },
     { text: "Our Team" },
   ];
-  const titlePage = "OUR TEAM";
-  const data = [
-    {
-      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
-      personName: "LTC Lester Yong",
-      personDesc:
-        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies. LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies. LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
-    },
-    {
-      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
-      personName: "LTC Lester Yong",
-      personDesc:
-        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
-    },
-    {
-      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
-      personName: "LTC Lester Yong",
-      personDesc:
-        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
-    },
-    {
-      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
-      personName: "LTC Lester Yong",
-      personDesc:
-        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
-    },
-    {
-      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
-      personName: "LTC Lester Yong",
-      personDesc:
-        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
-    },
-    {
-      imageUrl: "https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCH01.png",
-      personName: "LTC Lester Yong",
-      personDesc:
-        "LTC Lester Yong assumed Head IFC since 28<sup>th</sup> Sep 2020. He graduated with a Master of Arts in Security Studies and received the International Student Award for Excellence in Regional Or Security Studies.",
-    },
-  ];
+  const titlePage = "";
   return (
     <div className={styles.body}>
       <Head>
@@ -63,22 +44,28 @@ const OurTeam = () => {
       <Navbar />
       <CarouselSmall headerImg={carouselImg} titlePage={titlePage} />
       <Breadcrumbs data={breadcrumbs} />
+      {isLoading ? (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black font-semibold text-xl text-white">
+          <RingLoader color="#0894da" size={80} /> Loading...
+        </div>
+      ) : (
       <div className="mx-auto">
         <br />
         <br />
         <br />
         <div className="text-3xl font-semibold text-center text-gray-500">
-          Pusinfomar TNI Core team
+          {header[0].title}
         </div>
         <div className="flex items-center justify-center mt-16">
           <img
-            src="https://www.ifc.org.sg/ifc2web/images/refresh/RSN/IFCChart.png"
+            src={API_URL + "uploads/" + header[0].image}
             style={{ width: 1000 }}
             alt="Logo"
           />
         </div>
         <ListOurTeam listData={data} />
       </div>
+      ) }
       <Footer></Footer>
     </div>
   );

@@ -1,3 +1,5 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 const ListOurTeam = ({ listData }) => {
   return (
     <div className="container mx-auto my-10">
@@ -6,14 +8,14 @@ const ListOurTeam = ({ listData }) => {
           <div key={index} className="flex items-center p-4 rounded">
             <div className="w-1/4 text-center">
               <img
-                src={data.imageUrl}
+                src={API_URL + "uploads/" + data.image}
                 className="w-56 h-60 object-cover rounded-md"
-                alt={`${data.personName} Image`}
+                alt={`${data.name} Image`}
               />
             </div>
             <div className="w-3/4 ml-10">
-              <h4 className="font-bold text-gray-500">{data.personName}</h4>
-              <p className="text-justify text-gray-500 mt-2">{data.personDesc}</p>
+              <h4 className="font-bold text-gray-500">{data.name}</h4>
+              <p className="text-justify text-gray-500 mt-2">{data.description}</p>
             </div>
           </div>
         ))}

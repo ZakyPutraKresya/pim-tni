@@ -1,5 +1,5 @@
 import withAuth from "@/components/Auth/withAuth";
-import DataTeam from "@/components/admin/DataTeam";
+import DataEvents from "@/components/admin/DataEvents";
 import Navbar from "@/components/admin/Navbar";
 import Sidebar from "@/components/admin/Sidebar";
 import TitleTeam, { getHeaderTeam, getListTeam } from "@/components/admin/TitleTeam";
@@ -11,7 +11,7 @@ import { RingLoader } from "react-spinners";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const OurTeam = () => {
+const Events = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -52,8 +52,7 @@ const OurTeam = () => {
           <Navbar />
           <Sidebar />
           <div className="bg-gray-900 pt-10 ml-52">
-            <TitleTeam data={header} onSave={handleSaveTitleChanges} />
-            <DataTeam data={data} onSave={handleSaveListChanges} />
+            <DataEvents data={data} onSave={handleSaveListChanges} />
           </div>
 
         </>
@@ -62,4 +61,4 @@ const OurTeam = () => {
   );
 };
 
-export default withAuth(OurTeam);
+export default withAuth(Events);

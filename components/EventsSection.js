@@ -1,4 +1,6 @@
 import { useState } from "react";
+import styles from '@/styles/Main.module.scss'
+import { FaStar } from "react-icons/fa";
 
 const EventsSection = ({ events, onYearClick, onEventClick }) => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -38,26 +40,26 @@ const EventsSection = ({ events, onYearClick, onEventClick }) => {
       </div>
 
       <div className="lg:w-10/12 p-4">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {filteredEvents.map((event) => (
-            <div
-              key={event.id}
-              className="bg-white border rounded shadow overflow-hidden w-full h-auto pb-8"
-            >
-              <div className="p-4">
-                <h3 className="text-black font-bold text-2xl mt-5">
-                  {event.title}
-                </h3>
-                <p className="text-gray-700 mb-2 mt-2">Venue: {event.venue}</p>
-                <p className="text-gray-700 text-sm">{event.date}</p>
-                <button
-                  className="bg-blue-500 text-white px-3 py-1 rounded float-right mt-10"
-                  onClick={() => onEventClick(event)}
-                >
-                  Learn more
-                </button>
+                  <div className={styles['card-container']} key={event.id} style={{cursor: 'pointer'}} onClick={() => onEventClick(event)}>
+                <div className={`${styles.card} relative`}>
+                  <img
+                    src="/img/jpg/CardTitle.jpeg"
+                    alt={event.title}
+                    className="w-full h-full"
+                  />
+                  <div className={`${styles['card-content']} flex`}>
+                    <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-12 rounded">
+                      <FaStar />
+                    </div>
+                    <div className="title flex-grow bg-transparent w-12 h-12">
+                      <p className="text-sm md:text-base mt-3 ml-2 font-bold text-white text-ellipsis overflow-hidden whitespace-nowrap" title={`${event.title} (2023)`}>{event.title} (2023)</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+
           ))}
         </div>
       </div>

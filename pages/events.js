@@ -40,7 +40,7 @@ const Events = () => {
 
   const carouselImg =
     "/img/jpg/header.jpg";
-  const titlePage = "EVENTS";
+  const titlePage = "";
   const eventsData = [
     {
       id: 1,
@@ -62,6 +62,15 @@ const Events = () => {
     },
     {
       id: 3,
+      title: "IFC Maritime Week 2022",
+      venue: "Malacca Strait",
+      date: "2022-08-21 to 2022-08-25",
+      description: "To reinforce the best MARSEC practices...",
+      link: "/IFC2Web/Events/IFC%20Maritime%20Week/Maritime%20Awareness.pdf",
+      year: 2022,
+    },
+    {
+      id: 4,
       title: "IFC Maritime Week 2022",
       venue: "Malacca Strait",
       date: "2022-08-21 to 2022-08-25",

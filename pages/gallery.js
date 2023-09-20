@@ -8,7 +8,7 @@ import CardGallery from "@/components/CardGallery";
 import Footer from "@/components/Footer";
 
 const Gallery = () => {
-    const titlePage = "GALLERY"
+    const titlePage = ""
     const carouselImg = '/img/jpg/gallery.jpg'
     const breadcrumbs = [
         { text: 'Home', link: '/' },
