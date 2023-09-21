@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from '@/styles/Main.module.scss'
 import { FaStar } from "react-icons/fa";
+import moment from "moment";
+import { API_URL } from "./admin/DataEvents";
 
 const EventsSection = ({ events, onYearClick, onEventClick }) => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -10,10 +12,10 @@ const EventsSection = ({ events, onYearClick, onEventClick }) => {
     onYearClick(year)
   };
   // Ambil tahun unik dari events
-  const years = Array.from(new Set(events.map((event) => event.year)));
+  const years = Array.from(new Set(events.map((event) => moment(event.event_date).format("YYYY"))));
 
   const filteredEvents = selectedYear
-    ? events.filter((event) => event.year === selectedYear)
+    ? events.filter((event) => moment(event.event_date).format("YYYY") === selectedYear)
     : events;
 
   return (
@@ -45,7 +47,8 @@ const EventsSection = ({ events, onYearClick, onEventClick }) => {
                   <div className={styles['card-container']} key={event.id} style={{cursor: 'pointer'}} onClick={() => onEventClick(event)}>
                 <div className={`${styles.card} relative`}>
                   <img
-                    src="/img/jpg/CardTitle.jpeg"
+                    src={event.image != undefined ? API_URL + "uploads/" + event.image : "/img/png/notfound.png"}
+                    onError="/img/png/notfound.png"
                     alt={event.title}
                     className="w-full h-full"
                   />
@@ -53,8 +56,9 @@ const EventsSection = ({ events, onYearClick, onEventClick }) => {
                     <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-12 rounded">
                       <FaStar />
                     </div>
+                    <div className="absolute bottom-[180px] left-[200px] font-bold">{moment(event.event_date).format("DD-MM-YYYY")}</div>
                     <div className="title flex-grow bg-transparent w-12 h-12">
-                      <p className="text-sm md:text-base mt-3 ml-2 font-bold text-white text-ellipsis overflow-hidden whitespace-nowrap" title={`${event.title} (2023)`}>{event.title} (2023)</p>
+                      <p className="text-sm md:text-base mt-3 ml-2 font-bold text-black text-ellipsis overflow-hidden whitespace-nowrap" title={`${event.title}`}>{event.title}</p>
                     </div>
                   </div>
                 </div>

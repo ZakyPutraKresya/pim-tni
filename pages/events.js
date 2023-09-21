@@ -7,15 +7,23 @@ import Head from "next/head";
 import EventsSection from "@/components/EventsSection";
 import NewsModal from "@/components/NewsModal";
 import Footer from "@/components/Footer";
+import { getEventsData } from "./admin/events";
 
 const Events = () => {
   const [selectedYear, setSelectedYear] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [eventsData, setEventsData] = useState([]);
   const [breadcrumbs, setBreadcrumbs] = useState([
     { text: 'Home', link: '/' },
     { text: 'Events' },
   ]);
+
+  useEffect(() => {
+    getEventsData().then((result) => {
+      setEventsData(result)
+    })
+  })
   useEffect(() => {
     if (selectedYear) {
       setBreadcrumbs([
@@ -41,45 +49,6 @@ const Events = () => {
   const carouselImg =
     "/img/jpg/header.jpg";
   const titlePage = "";
-  const eventsData = [
-    {
-      id: 1,
-      title: "IFC Maritime Week 2023",
-      venue: "Malacca Strait",
-      date: "2023-08-21 to 2023-08-25",
-      description: "To reinforce the best MARSEC practices...",
-      link: "/IFC2Web/Events/IFC%20Maritime%20Week/Maritime%20Awareness.pdf",
-      year: 2023,
-    },
-    {
-      id: 2,
-      title: "IFC Maritime Week 2023",
-      venue: "Malacca Strait",
-      date: "2023-08-21 to 2023-08-25",
-      description: "To reinforce the best MARSEC practices...",
-      link: "/IFC2Web/Events/IFC%20Maritime%20Week/Maritime%20Awareness.pdf",
-      year: 2023,
-    },
-    {
-      id: 3,
-      title: "IFC Maritime Week 2022",
-      venue: "Malacca Strait",
-      date: "2022-08-21 to 2022-08-25",
-      description: "To reinforce the best MARSEC practices...",
-      link: "/IFC2Web/Events/IFC%20Maritime%20Week/Maritime%20Awareness.pdf",
-      year: 2022,
-    },
-    {
-      id: 4,
-      title: "IFC Maritime Week 2022",
-      venue: "Malacca Strait",
-      date: "2022-08-21 to 2022-08-25",
-      description: "To reinforce the best MARSEC practices...",
-      link: "/IFC2Web/Events/IFC%20Maritime%20Week/Maritime%20Awareness.pdf",
-      year: 2022,
-    },
-    // Add more events with different years here
-  ];
   const handleYearClick = (year) => {
     setSelectedYear(year);
   };

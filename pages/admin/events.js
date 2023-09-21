@@ -11,6 +11,15 @@ import { RingLoader } from "react-spinners";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+export const getEventsData = async () => {
+  const params = {
+    method: "GET",
+    url: API_URL + "event",
+    type: "json",
+  };
+  return await fetcher(params).then((json) => (json ? json : []));
+};
+
 const Events = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,22 +27,15 @@ const Events = () => {
   const [header, setHeader] = useState([]);
   
   useEffect(() => {
-    getHeaderTeam().then((result) => {
-      setHeader(result);
-    });
-    getListTeam().then((result) => {
-      setData(result);
+    getEventsData().then((data) => {
+      setData(data)
       setIsLoading(false)
-    });
+    })
   }, []);
+
   const handleSaveListChanges = () => {
-    getListTeam().then((result) => {
+    getEventsData().then((result) => {
       setData(result);
-    });
-  };
-  const handleSaveTitleChanges = () => {
-    getHeaderTeam().then((result) => {
-      setHeader(result);
     });
   };
   return (

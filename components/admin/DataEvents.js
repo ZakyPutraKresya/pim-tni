@@ -1,34 +1,63 @@
+import moment from "moment";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const DataEvents = ({ data, onSave }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState(null);
+  const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
   const [ids, setIds] = useState(null);
+  const [date, setDate] = useState(null);
 
+  const handleDeleteClick = (row) => {
+    const confirmDelete = window.confirm("Apakah Anda yakin ingin menghapus event ini?");
+
+    if (confirmDelete) {
+      // Implementasikan fungsi untuk mengirim permintaan DELETE ke server
+      // Anda dapat menggunakan fetch atau library HTTP lainnya untuk ini
+      // Misalnya, jika Anda menggunakan fetch:
+      fetch(`${API_URL}event/deleteEvent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: row.id }), // Gantilah dengan ID event yang ingin Anda hapus
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message); // Menampilkan pesan respon dari server
+          onSave();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  };
   const handleEditClick = (id) => {
     const selectedObject = data.find(item => item.id === id);
 
     if (selectedObject) {
-      setName(selectedObject.name);
+      setTitle(selectedObject.title);
       setDescription(selectedObject.description);
       setIds(selectedObject.id);
+      setDate(moment(selectedObject.event_date).format("YYYY-MM-DD"));
     }
     setIsModalOpen(true);
   };
 
   const handleModalClose = () => {
-    setName(null);
+    setTitle(null);
     setDescription(null);
     setIds(null);
     setIsModalOpen(false);
+    setDate(null);
   };
   const columns = [
     {
-      name: "Name",
-      selector: "name",
+      name: "Title",
+      selector: "title",
       sortable: true,
     },
     {
@@ -46,7 +75,11 @@ const DataEvents = ({ data, onSave }) => {
     },
     {
         name: "Created Date",
-        selector: "ctime",
+        cell: (row) => (
+          <div className="my-2 mx-2">
+              {moment(row.event_date).format("DD-MM-YYYY")}
+          </div>
+        ),
         sortable: true,
     },
     {
@@ -60,7 +93,7 @@ const DataEvents = ({ data, onSave }) => {
             Edit
           </button>
           <button
-            // onClick={() => handleDeleteClick(row)} // Tambahkan fungsi delete di sini
+            onClick={() => handleDeleteClick(row)} // Tambahkan fungsi delete di sini
             className="bg-red-500 text-white px-2 py-1 mx-1 rounded"
           >
             Delete
@@ -100,19 +133,21 @@ const DataEvents = ({ data, onSave }) => {
 
     const body = new FormData();
     let response;
-    body.append("name", name);
+    body.append("title", title);
     body.append("description", description);
+    body.append("event_date", date);
+
     if(e.target.file.files.length > 0){
       body.append("file", e.target.file.files[0]);
     }
     if(ids != null){
       body.append("id", ids);
-      response = await fetch(API_URL+"team/editList", {
+      response = await fetch(API_URL+"event/editList", {
         method: "POST",
         body
       });
     } else {
-      response = await fetch(API_URL+"team/createList", {
+      response = await fetch(API_URL+"event/createList", {
         method: "POST",
         body
       });
@@ -168,12 +203,12 @@ const DataEvents = ({ data, onSave }) => {
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block text-gray-200 text-sm font-bold mb-2">
-                  New Name:
+                  New Title:
                 </label>
                 <input
                   type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
                 />
                 <input
@@ -187,10 +222,27 @@ const DataEvents = ({ data, onSave }) => {
                 <label className="block text-gray-200 text-sm font-bold mb-2">
                   New Description:
                 </label>
-                <input
-                  type="text"
+                <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
+                  rows="4"
+                ></textarea>
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-200 text-sm font-bold mb-2">
+                  Event Date:
+                </label>
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
+                />
+                <input
+                  type="hidden"
+                  value={ids}
+                  onChange={(e) => setIds(e.target.value)}
                   className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
                 />
               </div>
