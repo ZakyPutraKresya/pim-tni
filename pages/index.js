@@ -19,22 +19,27 @@ export const getWelcomeData = async () => {
   return await fetcher(params).then(json => (json ? json : []));
 };
 
+export const getNewestEvent = async () => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL
+  const params = {
+    method: "GET",
+    url:  API_URL + "event/newest",
+    type: "json",
+  };
+  return await fetcher(params).then(json => (json ? json : []));
+}
+
 const Home = () => {
   const [welcomeData, setWelcomeData] = useState([])
-
-  const cardData = [
-    { title: 'Card Title 1', imageUrl: '/img/jpg/CardTitle.jpeg' },
-    { title: 'Card Title 2', imageUrl: '/img/jpg/CardTitle.jpeg' },
-    { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
-    { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
-    { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
-    { title: 'Card Title 3', imageUrl: '/img/jpg/CardTitle.jpeg' },
-  ];
+  const [cardData, setCardData] = useState([])
 
   useEffect(() => {
     getWelcomeData().then(result => {
       setWelcomeData(result[0]);
     });
+    getNewestEvent().then(result => {
+      setCardData(result)
+    }) 
   }, []);
 
   return (

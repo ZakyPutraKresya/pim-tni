@@ -50,13 +50,13 @@ const EventsSection = ({ events, onYearClick, onEventClick }) => {
                     src={event.image != undefined ? API_URL + "uploads/" + event.image : "/img/png/notfound.png"}
                     onError="/img/png/notfound.png"
                     alt={event.title}
-                    className="w-full h-full"
+                    className="w-[300px] h-full"
                   />
                   <div className={`${styles['card-content']} flex`}>
                     <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-12 rounded">
                       <FaStar />
                     </div>
-                    <div className="absolute bottom-[180px] left-[200px] font-bold">{moment(event.event_date).format("DD-MM-YYYY")}</div>
+                    <div className="absolute bottom-[165px] w-[100px] left-[200px] font-bold text-black">{moment(event.event_date).format("DD-MM-YYYY")}</div>
                     <div className="title flex-grow bg-transparent w-12 h-12">
                       <p className="text-sm md:text-base mt-3 ml-2 font-bold text-black text-ellipsis overflow-hidden whitespace-nowrap" title={`${event.title}`}>{event.title}</p>
                     </div>
