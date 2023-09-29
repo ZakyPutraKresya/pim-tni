@@ -59,16 +59,17 @@ const About = () => {
   useEffect(() => {
     getForewordData().then((result) => {
       setForewordData(result);
+      getAboutDescData().then((result) => {
+        setAboutData(result);
+        getMissionData().then((result) => {
+          setMissionData(result);
+          getVisionData().then((result) => {
+            setVisionData(result);
+          });
+        });
+      });
     });
-    getAboutDescData().then((result) => {
-      setAboutData(result);
-    });
-    getMissionData().then((result) => {
-      setMissionData(result);
-    });
-    getVisionData().then((result) => {
-      setVisionData(result);
-    });
+    
   }, []);
 
   useEffect(() => {
