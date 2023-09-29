@@ -19,6 +19,29 @@ const DataTeam = ({ data, onSave }) => {
     setIsModalOpen(true);
   };
 
+  
+  const handleDeleteClick = (id) => {
+    const confirmDelete = window.confirm("Apakah Anda yakin ingin menghapus item ini?");
+
+    if (confirmDelete) {
+      fetch(`${API_URL}team/deleteEvent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }), // Gantilah dengan ID event yang ingin Anda hapus
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message); // Menampilkan pesan respon dari server
+          onSave();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  };
+
   const handleModalClose = () => {
     setName(null);
     setDescription(null);
@@ -55,7 +78,7 @@ const DataTeam = ({ data, onSave }) => {
             Edit
           </button>
           <button
-            // onClick={() => handleDeleteClick(row)} // Tambahkan fungsi delete di sini
+            onClick={() => handleDeleteClick(row.id)} // Tambahkan fungsi delete di sini
             className="bg-red-500 text-white px-2 py-1 mx-1 rounded"
           >
             Delete

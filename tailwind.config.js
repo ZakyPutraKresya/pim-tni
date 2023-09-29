@@ -18,5 +18,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwind-clip-path')],
+  plugins: [
+    require('tailwind-clip-path'),
+  ],
 };
