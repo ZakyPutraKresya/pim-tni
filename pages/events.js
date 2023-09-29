@@ -8,6 +8,7 @@ import EventsSection from "@/components/EventsSection";
 import NewsModal from "@/components/NewsModal";
 import Footer from "@/components/Footer";
 import { getEventsData } from "./admin/events";
+import { useRouter } from "next/router";
 
 const Events = () => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -18,12 +19,31 @@ const Events = () => {
     { text: 'Home', link: '/' },
     { text: 'Events' },
   ]);
+  const router = useRouter();
+  const { id } = router.query; // Ambil ID acara dari URL
+  const decodedEventId = id ? atob(id) : null;
 
+  useEffect(() => {
+    // Cek jika ada ID acara dalam URL
+    if (decodedEventId) {
+      // Temukan data acara yang sesuai dengan ID dalam eventsData
+      const matchedEvent = eventsData.find((event) => event.id == decodedEventId);
+
+      // Jika ada data acara yang cocok, tampilkan modal
+      if (matchedEvent) {
+        openModal(matchedEvent)
+      }
+    } else {
+      // Jika tidak ada ID acara dalam URL atau tidak ada cocok dengan data acara, tutup modal
+      setModalOpen(false);
+      setSelectedEvent(null);
+    }
+  }, [decodedEventId, eventsData]);
   useEffect(() => {
     getEventsData().then((result) => {
       setEventsData(result)
     })
-  })
+  }, [])
   useEffect(() => {
     if (selectedYear) {
       setBreadcrumbs([

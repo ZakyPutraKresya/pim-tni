@@ -8,6 +8,7 @@ import IntroSection from '@/components/IntroSection';
 import QuickLinks from '@/components/QuickLinks';
 import Footer from '@/components/Footer';
 import fetcher from '@/helpers/fetcher';
+import { getProfileData } from './admin/profile';
 
 export const getWelcomeData = async () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -36,10 +37,11 @@ const Home = () => {
   useEffect(() => {
     getWelcomeData().then(result => {
       setWelcomeData(result[0]);
+      getNewestEvent().then(result => {
+        setCardData(result)
+      }) 
     });
-    getNewestEvent().then(result => {
-      setCardData(result)
-    }) 
+    
   }, []);
 
   return (
@@ -52,7 +54,7 @@ const Home = () => {
 
       {/* Your HTML content */}
       {/* ... (Paste your HTML content here) */}
-      <Navbar></Navbar>
+      <Navbar ></Navbar>
       <CarouselBig></CarouselBig>
       <WhatsNew data={cardData}></WhatsNew>
       <IntroSection

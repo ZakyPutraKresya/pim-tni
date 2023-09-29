@@ -6,6 +6,11 @@ import { API_URL } from "./admin/DataEvents";
 
 const EventsSection = ({ events, onYearClick, onEventClick }) => {
   const [selectedYear, setSelectedYear] = useState(null);
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
 
   const handleYearClick = (year) => {
     setSelectedYear(year);
@@ -47,8 +52,14 @@ const EventsSection = ({ events, onYearClick, onEventClick }) => {
                   <div className={styles['card-container']} key={event.id} style={{cursor: 'pointer'}} onClick={() => onEventClick(event)}>
                 <div className={`${styles.card} relative`}>
                   <img
-                    src={event.image != undefined ? API_URL + "uploads/" + event.image : "/img/png/notfound.png"}
-                    onError="/img/png/notfound.png"
+                    src={
+                      !imageError
+                        ? event.image !== undefined
+                          ? API_URL + "uploads/" + event.image
+                          : "/img/png/notfound.png"
+                        : "/img/png/notfound.png"
+                    }
+                    onError={handleImageError} // Handle error when image fails to load
                     alt={event.title}
                     className="w-[300px] h-full"
                   />
@@ -56,7 +67,7 @@ const EventsSection = ({ events, onYearClick, onEventClick }) => {
                     <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-12 rounded">
                       <FaStar />
                     </div>
-                    <div className="absolute bottom-[165px] w-[100px] left-[200px] font-bold text-black">{moment(event.event_date).format("DD-MM-YYYY")}</div>
+                    <div className="absolute bottom-[150px] w-[100px] left-[200px] font-bold text-black">{moment(event.event_date).format("DD-MM-YYYY")}</div>
                     <div className="title flex-grow bg-transparent w-12 h-12">
                       <p className="text-sm md:text-base mt-3 ml-2 font-bold text-black text-ellipsis overflow-hidden whitespace-nowrap" title={`${event.title}`}>{event.title}</p>
                     </div>
