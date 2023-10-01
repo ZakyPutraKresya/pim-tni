@@ -11,6 +11,7 @@ import VisionSection from "@/components/VIsionSection";
 import Footer from "@/components/Footer";
 import { getAboutDescData, getForewordData, getMissionData, getVisionData } from "./admin/about";
 import { RingLoader } from "react-spinners";
+import { getHeaderImage } from "./our-team";
 
 const AboutUs = () => {
   const [forewordData, setForewordData] = useState([]);
@@ -19,7 +20,7 @@ const AboutUs = () => {
   const [missionData, setMissionData] = useState([]);
   const [visionData, setVisionData] = useState([]);
 
-  const carouselImg = "/img/jpg/header.jpg";
+  const [carouselImg, setCarouselImg] = useState(null);
   const breadcrumbs = [
     { text: "Home", link: "/" },
     { text: "About", link: "/about" },
@@ -29,15 +30,18 @@ const AboutUs = () => {
   useEffect(() => {
     getForewordData().then((result) => {
       setForewordData(result);
-    });
-    getAboutDescData().then((result) => {
-      setAboutData(result);
-    });
-    getMissionData().then((result) => {
-      setMissionData(result);
-    });
-    getVisionData().then((result) => {
-      setVisionData(result);
+      getAboutDescData().then((result) => {
+        setAboutData(result);
+        getMissionData().then((result) => {
+          setMissionData(result);
+          getVisionData().then((result) => {
+            setVisionData(result);
+            getHeaderImage(1).then((result) => {
+              setCarouselImg(result);
+            })
+          });
+        });
+      });
     });
   }, []);
   useEffect(() => {

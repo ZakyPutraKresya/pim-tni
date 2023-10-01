@@ -9,6 +9,7 @@ import NewsModal from "@/components/NewsModal";
 import Footer from "@/components/Footer";
 import { getEventsData } from "./admin/events";
 import { useRouter } from "next/router";
+import { getHeaderImage } from "./our-team";
 
 const Events = () => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -42,6 +43,9 @@ const Events = () => {
   useEffect(() => {
     getEventsData().then((result) => {
       setEventsData(result)
+      getHeaderImage(5).then((result) => {
+        setCarouselImg(result)
+      })
     })
   }, [])
   useEffect(() => {
@@ -66,8 +70,7 @@ const Events = () => {
     setModalOpen(false);
   };
 
-  const carouselImg =
-    "/img/jpg/header.jpg";
+  const [ carouselImg, setCarouselImg ] = useState(null);
   const titlePage = "";
   const handleYearClick = (year) => {
     setSelectedYear(year);

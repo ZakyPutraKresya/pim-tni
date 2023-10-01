@@ -156,7 +156,7 @@
   
   .carousel-image {
     position: relative;
-    object-fit: cover;
+    object-fit: fill;
     filter: brightness(50%); /* Membuat gambar redup */
   }
   

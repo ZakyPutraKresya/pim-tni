@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { FaFileArchive, FaImages, FaInfoCircle, FaNewspaper, FaUsers } from "react-icons/fa";
+import { FaCog, FaFileArchive, FaImages, FaInfoCircle, FaNewspaper, FaUsers } from "react-icons/fa";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -140,6 +140,24 @@ const Sidebar = () => {
                 </span>
                 <span className="ml-2 text-sm tracking-wide truncate">
                   Profile
+                </span>
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/admin/settings" legacyBehavior>
+              <a
+                className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 text-white-600 hover:text-white-800 border-l-4 ${
+                  router.pathname === "/admin/settings"
+                    ? "border-blue-500"
+                    : "border-transparent"
+                } dark:hover:border-gray-800 pr-6`}
+              >
+                <span className="inline-flex justify-center items-center ml-4">
+                  <FaCog />
+                </span>
+                <span className="ml-2 text-sm tracking-wide truncate">
+                  Settings
                 </span>
               </a>
             </Link>

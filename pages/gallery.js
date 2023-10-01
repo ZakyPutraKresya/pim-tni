@@ -8,10 +8,11 @@ import CardGallery from "@/components/CardGallery";
 import Footer from "@/components/Footer";
 import { getGalleryData } from "./admin/gallery";
 import { RingLoader } from "react-spinners";
+import { getHeaderImage } from "./our-team";
 
 const Gallery = () => {
   const titlePage = "";
-  const carouselImg = "/img/jpg/gallery.jpg";
+  const [ carouselImg, setCarouselImg ] = useState(null);
   const breadcrumbs = [{ text: "Home", link: "/" }, { text: "Gallery" }];
   const [cardData, setCardData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +20,10 @@ const Gallery = () => {
   useEffect(() => {
     getGalleryData().then((data) => {
       setCardData(data);
-      setIsLoading(false);
+      getHeaderImage(6).then((result) => {
+        setCarouselImg(result)
+        setIsLoading(false);
+      })
     });
   }, []);
 

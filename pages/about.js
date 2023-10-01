@@ -1,17 +1,22 @@
 import Navbar from "@/components/Navbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/Main.module.scss";
 import CarouselSmall from "@/components/CarouselSmall";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Head from "next/head";
 import CardAboutUs from "@/components/CardAboutUs";
 import Footer from "@/components/Footer";
+import { getHeaderImage } from "./our-team";
 
 const About = () => {
-  const carouselImg =
-    "/img/jpg/header.jpg";
+  const [ carouselImg, setCarouselImg ]= useState(null);
   const breadcrumbs = [{ text: "Home", link: "/" }, { text: "About" }];
   const titlePage = "";
+  useEffect(() => {
+    getHeaderImage(1).then((result) => {
+      setCarouselImg(result);
+    })
+  }, [])
   return (
     <div className={styles.body}>
       <Head>

@@ -7,6 +7,7 @@ import Head from "next/head";
 import NewsModal from "@/components/NewsModal";
 import Footer from "@/components/Footer";
 import ReportSection from "@/components/ReportSection";
+import { getHeaderImage } from "./our-team";
 
 const Report = () => {
   const [selectedType, setselectedType] = useState(null);
@@ -40,8 +41,12 @@ const Report = () => {
     setModalOpen(false);
   };
 
-  const carouselImg =
-    "/img/jpg/header.jpg";
+  useEffect(() => {
+    getHeaderImage(3).then((result) => {
+      setCarouselImg(result)
+    })
+  }, [])
+  const [ carouselImg, setCarouselImg ] = useState(null); 
   const titlePage = "REPORT";
   const eventsData = [
     {
