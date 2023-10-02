@@ -156,7 +156,11 @@ const DataEvents = ({ data, onSave }) => {
     if (response.ok) {
       const data = await response.json();
       onSave();
+      setTitle(null);
+      setDescription(null);
+      setIds(null);
       setIsModalOpen(false);
+      setDate(null);
       alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
     } else {
       alert("Something went wrong")

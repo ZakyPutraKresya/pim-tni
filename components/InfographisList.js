@@ -41,10 +41,10 @@ const Infographislist = ({ data }) => {
       ))}
       {selectedInfographic && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75">
-          <div className="bg-white p-4 border  rounded">
+          <div className="bg-white p-4 border rounded w-full mx-10 h-full">
             {/* Tampilkan PDF di sini */}
-            <embed src={API_URL + "pdf/" + selectedInfographic.pdfurl} type="application/pdf" width="1200px" height="500px" />
-            <button className="bg-blue-500 text-white px-3 py-1 rounded mt-4 float-right" onClick={closePDFPreview}>
+            <iframe src={API_URL + "pdf/" + selectedInfographic.pdfurl} width="100%" height="92%"></iframe>
+            <button className="bg-blue-500 text-white px-3 py-1 w-[10%] rounded mt-4 float-right" onClick={closePDFPreview}>
               Close
             </button>
           </div>

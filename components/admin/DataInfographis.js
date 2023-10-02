@@ -135,6 +135,9 @@ const DataInfographis = ({ data, onSave }) => {
     if (response.ok) {
       onSave();
       setIsModalOpen(false);
+      setTitle(null);
+      setIds(null);
+      setIsModalOpen(false);
       alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
     } else {
       alert(data.message); 

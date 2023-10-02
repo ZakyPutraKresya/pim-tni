@@ -37,14 +37,16 @@ const DataPartners = ({ data, onSave }) => {
     const selectedObject = data.find(item => item.id === id);
 
     if (selectedObject) {
-      setTitle(selectedObject.title);
+      setName(selectedObject.name);
+      setUrl(selectedObject.url);
       setIds(selectedObject.id);
     }
     setIsModalOpen(true);
   };
 
   const handleModalClose = () => {
-    setTitle(null);
+    setName(null);
+    setUrl(null);
     setIds(null);
     setIsModalOpen(false);
   };
@@ -144,6 +146,9 @@ const DataPartners = ({ data, onSave }) => {
     const data = await response.json();
     if (response.ok) {
       onSave();
+      setName(null);
+      setUrl(null);
+      setIds(null);
       setIsModalOpen(false);
       alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
     } else {

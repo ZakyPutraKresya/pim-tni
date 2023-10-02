@@ -142,6 +142,8 @@ const DataGallery = ({ data, onSave }) => {
     const data = await response.json();
     if (response.ok) {
       onSave();
+      setTitle(null);
+      setIds(null);
       setIsModalOpen(false);
       alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
     } else {

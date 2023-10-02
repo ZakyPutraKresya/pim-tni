@@ -139,6 +139,9 @@ const DataTeam = ({ data, onSave }) => {
     if (response.ok) {
       const data = await response.json();
       onSave();
+      setName(null);
+      setDescription(null);
+      setIds(null);
       setIsModalOpen(false);
       alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
     } else {

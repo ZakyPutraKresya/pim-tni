@@ -102,7 +102,7 @@ const Foreword = ({ data, onSave }) => {
                 </label>
                 <input
                   type="text"
-                  value={author.name}
+                  value={authorName}
                   onChange={(e) => setAuthorName(e.target.value)}
                   className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
                 />
@@ -113,7 +113,7 @@ const Foreword = ({ data, onSave }) => {
                 </label>
                 <input
                   type="text"
-                  value={author.position}
+                  value={authorPosition}
                   onChange={(e) => setAuthorPosition(e.target.value)}
                   className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
                 />

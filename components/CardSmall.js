@@ -38,12 +38,12 @@ const CardSmall = ({ title, imageUrl }) => {
           <img
             src={API_URL + "uploads/" + imageUrl}
             alt={title}
-            className="w-full h-max-48"
+            className="w-[300px] h-[175px] mx-auto"
             onClick={() => setImagePreviewActive(!isImagePreviewActive)}
           />
         </div>
 
-        <p className="text-xl text-center bg-transparent md:text-base font-bold py-2 ml-2">
+        <p className="text-xl text-center bg-transparent md:text-base font-bold py-2">
           {title}
         </p>
       </div>

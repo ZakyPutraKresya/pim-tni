@@ -16,8 +16,6 @@ const DataSettings = ({ data, onSave }) => {
   };
 
   const handleModalClose = () => {
-    setName(null);
-    setDescription(null);
     setIds(null);
     setIsModalOpen(false);
   };

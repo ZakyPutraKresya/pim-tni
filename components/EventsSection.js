@@ -47,37 +47,49 @@ const EventsSection = ({ events, onYearClick, onEventClick }) => {
       </div>
 
       <div className="lg:w-10/12 p-4">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {filteredEvents.map((event) => (
-                  <div className={styles['card-container']} key={event.id} style={{cursor: 'pointer'}} onClick={() => onEventClick(event)}>
-                <div className={`${styles.card} relative`}>
-                  <img
-                    src={
-                      !imageError
-                        ? event.image !== undefined
-                          ? API_URL + "uploads/" + event.image
-                          : "/img/png/notfound.png"
-                        : "/img/png/notfound.png"
-                    }
-                    onError={handleImageError} // Handle error when image fails to load
-                    alt={event.title}
-                    className="w-[300px] h-full"
-                  />
-                  <div className={`${styles['card-content']} flex`}>
-                    <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-12 rounded">
-                      <FaStar />
-                    </div>
-                    <div className="absolute bottom-[150px] w-[100px] left-[200px] font-bold text-black">{moment(event.event_date).format("DD-MM-YYYY")}</div>
-                    <div className="title flex-grow bg-transparent w-12 h-12">
-                      <p className="text-sm md:text-base mt-3 ml-2 font-bold text-black text-ellipsis overflow-hidden whitespace-nowrap" title={`${event.title}`}>{event.title}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-          ))}
+  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+    {filteredEvents.map((event) => (
+      <div
+        className={styles['card-container']}
+        key={event.id}
+        style={{ cursor: 'pointer' }}
+        onClick={() => onEventClick(event)}
+      >
+        <div className={`${styles.card} relative`}>
+          <img
+            src={
+              !imageError
+                ? event.image !== undefined
+                  ? API_URL + 'uploads/' + event.image
+                  : '/img/png/notfound.png'
+                : '/img/png/notfound.png'
+            }
+            onError={handleImageError} // Handle error when image fails to load
+            alt={event.title}
+            className="w-[300px] h-[175px] object-fill"
+          />
+          <div className={`${styles['card-content']} flex`}>
+            <div className="icon-bg bg-blue-500 text-white flex items-center justify-center w-12 h-9 mt-4">
+              <FaStar />
+            </div>
+            <div className="absolute bottom-[140px] right-0 mx-2 font-bold text-black bg-white rounded px-2">
+              {moment(event.event_date).format('DD-MM-YYYY')}
+            </div>
+            <div className="title flex-grow bg-transparent w-12 h-9 mt-4 bg-white ">
+              <p
+                className="text-sm md:text-base ml-2 mt-2 font-bold text-black text-ellipsis overflow-hidden whitespace-nowrap"
+                title={`${event.title}`}
+              >
+                {event.title}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+    ))}
+  </div>
+</div>
+
     </div>
   );
 };
