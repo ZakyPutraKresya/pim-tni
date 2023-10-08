@@ -14,8 +14,8 @@ const ListOurTeam = ({ listData }) => {
               />
             </div>
             <div className="w-3/4 ml-10">
-              <h4 className="font-bold text-gray-500">{data.name}</h4>
-              <p className="text-justify text-gray-500 mt-2">{data.description}</p>
+              <h4 className="text-gray-500" dangerouslySetInnerHTML={{ __html: data.name }}></h4>
+              <p className="text-justify text-gray-500 mt-2" dangerouslySetInnerHTML={{ __html: data.description }}></p>
             </div>
           </div>
         ))}

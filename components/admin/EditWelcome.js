@@ -1,6 +1,12 @@
 // components/EditModal.js
 
 import { useState } from "react";
+import dynamic from "next/dynamic"; // Import dynamic from Next.js
+
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false, // Ensure that react-quill is imported only on the client side
+});
+import "react-quill/dist/quill.snow.css"; // Import the styles
 
 const EditWelcome = ({ welcomeData, onSave, onClose }) => {
   const [title, setTitle] = useState(welcomeData.title);
@@ -15,18 +21,18 @@ const EditWelcome = ({ welcomeData, onSave, onClose }) => {
     body.append("file", e.target.file.files[0]);
     body.append("title", title);
     body.append("description", description);
-    const response = await fetch(API_URL+"dashboard", {
-        method: "POST",
-        body
+    const response = await fetch(API_URL + "dashboard", {
+      method: "POST",
+      body,
     });
 
     if (response.status === 200) {
-        const data = await response.json();
-        onSave();
-        alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
+      const data = await response.json();
+      onSave();
+      alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
     } else {
-        alert("Terjadi kesalahan saat mengunggah file."); // Menampilkan pesan kesalahan default jika respons tidak berhasil
-      }
+      alert("Terjadi kesalahan saat mengunggah file."); // Menampilkan pesan kesalahan default jika respons tidak berhasil
+    }
   };
 
   return (
@@ -41,23 +47,21 @@ const EditWelcome = ({ welcomeData, onSave, onClose }) => {
             <label className="block text-gray-200 text-sm font-bold mb-2">
               New Title:
             </label>
-            <input
-              type="text"
+            <ReactQuill
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
+              onChange={(value) => setTitle(value)}
+              className="quill-editor" // Add a CSS class for styling purposes
             />
           </div>
           <div className="mb-4">
             <label className="block text-gray-200 text-sm font-bold mb-2">
               New Description:
             </label>
-            <textarea
+            <ReactQuill
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
-              rows="4"
-            ></textarea>
+              onChange={(value) => setDescription(value)}
+              className="quill-editor" // Add a CSS class for styling purposes
+            />
           </div>
           <div className="mb-4">
             <label className="block text-gray-200 text-sm font-bold mb-2">

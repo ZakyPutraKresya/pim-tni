@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '@/styles/Main.module.scss'
+import styles from '@/styles/Main.module.scss';
 import { API_URL } from './admin/DataEvents';
 
 const CarouselSmall = ({ headerImg, titlePage }) => {

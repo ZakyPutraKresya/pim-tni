@@ -92,9 +92,9 @@ const AdminDashboard = () => {
           <div className="flex">
             <div className="w-2/3 pr-8">
               <h2 className="text-2xl font-bold mb-4">
-                <b>{welcomeData.title}</b>
+                <b dangerouslySetInnerHTML={{ __html: welcomeData.title }}></b>
               </h2>
-              <p className="textBlack">{welcomeData.description}</p>
+              <p className="textBlack" dangerouslySetInnerHTML={{ __html: welcomeData.description }}></p>
             </div>
             <div className="w-1/3">
               <img

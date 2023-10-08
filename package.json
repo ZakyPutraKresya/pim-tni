@@ -33,6 +33,7 @@
     "react-loader-spinner": "^5.4.5",
     "react-notifications": "^1.7.4",
     "react-paginate": "^8.2.0",
+    "react-quill": "^2.0.0",
     "react-select": "^5.7.4",
     "react-spinners": "^0.13.8",
     "react-table-6": "^6.11.0",

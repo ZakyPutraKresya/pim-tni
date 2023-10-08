@@ -7,9 +7,9 @@ const IntroSection = ({ title, description, image }) => {
       <div className="flex">
         <div className="w-2/3 pr-8">
           <h2 className="text-2xl font-bold mb-4">
-            <b>{title}</b>
+            <b dangerouslySetInnerHTML={{ __html: title }}></b>
           </h2>
-          <p className="textBlack">{description}</p>
+          <p className="textBlack" dangerouslySetInnerHTML={{ __html: description }}></p>
         </div>
         <div className="w-1/3">
           <img src={API_URL + image} className="w-full h-auto" alt="Image" />

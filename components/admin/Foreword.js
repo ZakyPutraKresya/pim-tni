@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import dynamic from "next/dynamic"; // Import dynamic from Next.js
+
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false, // Ensure that react-quill is imported only on the client side
+});
+import "react-quill/dist/quill.snow.css"; // Import the styles
 
 const Foreword = ({ data, onSave }) => {
   const { author } = data[0]
@@ -47,8 +53,7 @@ const Foreword = ({ data, onSave }) => {
   return (
     <div className="w-3/4 mx-auto pt-10">
       <div className="md:col-span-2 xl:col-span-3 flex justify-center items-center">
-        <h2 className="text-center text-blue-600 font-bold text-xl mb-4">
-          {title}
+        <h2 className="text-center text-blue-600 text-xl mb-4" dangerouslySetInnerHTML={{ __html: title }}>
         </h2>
 
         <button
@@ -58,19 +63,17 @@ const Foreword = ({ data, onSave }) => {
           Edit
         </button>
       </div>
-      <p className="text-justify mb-4 text-white">
-        {paragraphs}
+      <p className="text-justify mb-4 text-white" dangerouslySetInnerHTML={{ __html: paragraphs }}>
       </p>
-      <p className="text-left italic text-white">
-        <b>{authorName}</b>
-        <br />
-        {authorPosition}
+      <p className="text-left text-white">
+        <span dangerouslySetInnerHTML={{ __html: authorName }}></span>
+        <span dangerouslySetInnerHTML={{ __html: authorPosition }}></span>
       </p>
       {isModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
           <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
           <div
-            className="dark:bg-gray-800 rounded-lg z-10 absolute p-4 w-[700px] shadow-md"
+            className="dark:bg-gray-800 rounded-lg z-10 absolute p-4 w-[700px] shadow-md overflow-y-scroll"
             style={{ maxHeight: 600 }}
           >
             <form onSubmit={handleSubmit}>
@@ -78,44 +81,40 @@ const Foreword = ({ data, onSave }) => {
                 <label className="block text-gray-200 text-sm font-bold mb-2">
                   New Title:
                 </label>
-                <input
-                  type="text"
+                <ReactQuill
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
+                  onChange={(value) => setTitle(value)}
+                  className="quill-editor text-white" // Add a CSS class for styling purposes
                 />
               </div>
               <div className="mb-4">
                 <label className="block text-gray-200 text-sm font-bold mb-2">
                   New Description:
                 </label>
-                <textarea
+                <ReactQuill
                   value={paragraphs}
-                  onChange={(e) => setParagraphs(e.target.value)}
-                  className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
-                  rows="4"
-                ></textarea>
+                  onChange={(value) => setParagraphs(value)}
+                  className="quill-editor text-white" // Add a CSS class for styling purposes
+                />
               </div>
               <div className="mb-4">
                 <label className="block text-gray-200 text-sm font-bold mb-2">
                   New Author Name:
                 </label>
-                <input
-                  type="text"
+                <ReactQuill
                   value={authorName}
-                  onChange={(e) => setAuthorName(e.target.value)}
-                  className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
+                  onChange={(value) => setAuthorName(value)}
+                  className="quill-editor text-white" // Add a CSS class for styling purposes
                 />
               </div>
               <div className="mb-4">
                 <label className="block text-gray-200 text-sm font-bold mb-2">
                   New Author Position:
                 </label>
-                <input
-                  type="text"
+                <ReactQuill
                   value={authorPosition}
-                  onChange={(e) => setAuthorPosition(e.target.value)}
-                  className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
+                  onChange={(value) => setAuthorPosition(value)}
+                  className="quill-editor text-white" // Add a CSS class for styling purposes
                 />
               </div>
               <div className="flex justify-end">

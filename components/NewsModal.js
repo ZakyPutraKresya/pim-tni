@@ -39,7 +39,7 @@ const NewsModal = ({ isOpen, closeModal, modalData }) => {
             <p
               className="mt-4"
               dangerouslySetInnerHTML={{
-                __html: modalData.description.replace(/\n/g, "<br>"),
+                __html: modalData.description
               }}
             ></p>
           </div>

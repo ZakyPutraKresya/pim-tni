@@ -309,3 +309,19 @@
 }
 
 
+.custom-overflow::-webkit-scrollbar {
+  width: 10px; /* Lebar bilah gulir */
+}
+
+.custom-overflow::-webkit-scrollbar-thumb {
+  background-color: #333; /* Warna thumb (bagian yang dapat digerakkan) */
+  border-radius: 5px; /* Sudut bulat thumb */
+}
+
+.custom-overflow::-webkit-scrollbar-track {
+  background-color: transparent; /* Warna track (area di sekitar thumb) */
+}
+
+.custom-overflow {
+  scrollbar-color: lightgray gray; /* Warna thumb dan track */
+}

@@ -2,6 +2,13 @@ import { useState } from "react";
 import DataTable from "react-data-table-component";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+import dynamic from "next/dynamic"; // Import dynamic from Next.js
+
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false, // Ensure that react-quill is imported only on the client side
+});
+import "react-quill/dist/quill.snow.css"; // Import the styles
+
 const DataTeam = ({ data, onSave }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState(null);
@@ -9,7 +16,7 @@ const DataTeam = ({ data, onSave }) => {
   const [ids, setIds] = useState(null);
 
   const handleEditClick = (id) => {
-    const selectedObject = data.find(item => item.id === id);
+    const selectedObject = data.find((item) => item.id === id);
 
     if (selectedObject) {
       setName(selectedObject.name);
@@ -19,9 +26,10 @@ const DataTeam = ({ data, onSave }) => {
     setIsModalOpen(true);
   };
 
-  
   const handleDeleteClick = (id) => {
-    const confirmDelete = window.confirm("Apakah Anda yakin ingin menghapus item ini?");
+    const confirmDelete = window.confirm(
+      "Apakah Anda yakin ingin menghapus item ini?"
+    );
 
     if (confirmDelete) {
       fetch(`${API_URL}team/deleteEvent`, {
@@ -51,19 +59,23 @@ const DataTeam = ({ data, onSave }) => {
   const columns = [
     {
       name: "Name",
-      selector: "name",
-      sortable: true,
+      cell: (row) => (
+        <div className="my-5" dangerouslySetInnerHTML={{ __html: row.name }}>
+        </div>
+      ),
     },
     {
       name: "Description",
-      selector: "description",
-      sortable: true,
+      cell: (row) => (
+        <div className="my-5" dangerouslySetInnerHTML={{ __html: row.description }}>
+        </div>
+      ),
     },
     {
       name: "Image",
       cell: (row) => (
         <div className="my-2 mx-2">
-            <img src={API_URL + "uploads/" + row.image} width={90} />
+          <img src={API_URL + "uploads/" + row.image} width={90} />
         </div>
       ),
     },
@@ -120,19 +132,19 @@ const DataTeam = ({ data, onSave }) => {
     let response;
     body.append("name", name);
     body.append("description", description);
-    if(e.target.file.files.length > 0){
+    if (e.target.file.files.length > 0) {
       body.append("file", e.target.file.files[0]);
     }
-    if(ids != null){
+    if (ids != null) {
       body.append("id", ids);
-      response = await fetch(API_URL+"team/editList", {
+      response = await fetch(API_URL + "team/editList", {
         method: "POST",
-        body
+        body,
       });
     } else {
-      response = await fetch(API_URL+"team/createList", {
+      response = await fetch(API_URL + "team/createList", {
         method: "POST",
-        body
+        body,
       });
     }
 
@@ -145,7 +157,7 @@ const DataTeam = ({ data, onSave }) => {
       setIsModalOpen(false);
       alert(data.message); // Menampilkan pesan dari respons dalam sebuah alert
     } else {
-      alert("Something went wrong")
+      alert("Something went wrong");
     }
   };
   return (
@@ -191,11 +203,10 @@ const DataTeam = ({ data, onSave }) => {
                 <label className="block text-gray-200 text-sm font-bold mb-2">
                   New Name:
                 </label>
-                <input
-                  type="text"
+                <ReactQuill
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
+                  onChange={(value) => setName(value)}
+                  className="quill-editor text-white" // Add a CSS class for styling purposes
                 />
                 <input
                   type="hidden"
@@ -208,11 +219,10 @@ const DataTeam = ({ data, onSave }) => {
                 <label className="block text-gray-200 text-sm font-bold mb-2">
                   New Description:
                 </label>
-                <input
-                  type="text"
+                <ReactQuill
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="appearance-none w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-600 rounded"
+                  onChange={(value) => setDescription(value)}
+                  className="quill-editor text-white" // Add a CSS class for styling purposes
                 />
               </div>
               <div className="mb-4">
