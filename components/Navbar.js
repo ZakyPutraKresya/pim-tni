@@ -47,7 +47,7 @@ const Navbar = () => {
             />
           </div>
         </Link>
-        <ul className="flex space-x-4 ">
+        <ul className="flex space-x-4 navbar-list">
           <li className="relative">
             <Link
               href=""

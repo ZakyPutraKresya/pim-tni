@@ -31,13 +31,17 @@ html {
   background-color: #0F172A; /* Ganti dengan warna latar belakang yang Anda inginkan */
 }
 
+.navbar-list {
+  list-style: none !important;
+}
+
 ul {
   list-style:disc; /* Atur jenis pembulatan (bullet style) sesuai keinginan */
   margin-left: 20px; /* Atur margin kiri sesuai keinginan */
 }
 
 ol {
-  list-style-type: decimal;
+  list-style: decimal;
   margin-left: 20px; /* Atur margin kiri sesuai keinginan */
 }
 
